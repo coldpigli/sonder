@@ -1,8 +1,12 @@
+import { Hero, TopBar } from 'components'
 import React from 'react'
 
 const Landing = () => {
   return (
-    <div>Landing</div>
+    <div>
+        <TopBar />
+        <Hero />
+    </div>
   )
 }
 

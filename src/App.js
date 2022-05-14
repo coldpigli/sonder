@@ -1,15 +1,13 @@
-// import { RoutingConfigs } from "configs";
-
+import { Box } from "@chakra-ui/react";
 import { RoutingConfigs } from "configs";
-import { Route, Routes } from "react-router-dom";
-import { FindPeers, Landing } from "routes";
 
 
 function App() {
+
   return (
-    <div className="App">
+    <Box className="App" border='1px'>
       <RoutingConfigs/>
-    </div>
+    </Box>
   );
 }
 
