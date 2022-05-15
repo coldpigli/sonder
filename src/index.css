@@ -3,3 +3,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.App{
+  min-height: 100vh;
+}
