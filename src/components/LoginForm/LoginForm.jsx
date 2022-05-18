@@ -9,9 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { validationMessages } from "constants";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 const LoginForm = () => {
+
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -26,8 +30,8 @@ const LoginForm = () => {
         .min(8, validationMessages.passwordShort),
     }),
     onSubmit: (values, actions) => {
-      console.log("Checking Formik Integration", values);
       actions.resetForm();
+      navigate("/feed", {replace: true});
     },
   });
 
