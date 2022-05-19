@@ -4,6 +4,8 @@ import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 import UserProfile from "./UserProfile/UserProfile";
+import Bookmarks from "./Bookmarks/Bookmarks";
+import Trending from "./Trending/Trending";
 
 
 export{
@@ -12,5 +14,7 @@ export{
     Landing,
     Login,
     Signup,
-    UserProfile
+    UserProfile,
+    Bookmarks,
+    Trending
 }
