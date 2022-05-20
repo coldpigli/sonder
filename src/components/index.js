@@ -5,6 +5,8 @@ import SignupForm from "./SignupForm/SignupForm";
 import Sidebar from "./Sidebar/Sidebar";
 import CreatePost from "./CreatePost/CreatePost";
 import GreetingHeader from "./GreetingHeader/GreetingHeader";
+import Feedlisting from "./Feedlisting/Feedlisting";
+import PostItem from "./PostItem/PostItem";
 
 export{
     TopBar,
@@ -13,5 +15,7 @@ export{
     SignupForm,
     Sidebar,
     CreatePost,
-    GreetingHeader  
+    GreetingHeader,
+    Feedlisting,
+    PostItem
 }

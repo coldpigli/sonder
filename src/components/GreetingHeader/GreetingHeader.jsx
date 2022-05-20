@@ -10,7 +10,7 @@ const GreetingHeader = () => {
       border="2px solid"
       borderRadius="1rem"
       w="100%"
-      boxShadow="lg"
+      boxShadow="md"
     >
       <Box>
         <Heading>Hello Josh !</Heading>
