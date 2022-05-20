@@ -1,9 +1,11 @@
-import { Box, Button, Flex, IconButton, Textarea } from "@chakra-ui/react";
-import { MdAddBox } from "react-icons/md";
+import { Box, Flex, HStack, IconButton, Textarea, VStack } from "@chakra-ui/react";
+import { MdAddBox, MdImage, MdOutlineEmojiEmotions } from "react-icons/md";
+import { grayscale } from "utils/grayscale";
 
 const CreatePost = () => {
   return (
-    <Flex p="1rem" border="2px solid" borderRadius="1rem" align="center" boxShadow='lg'>
+    <Box p="1rem" border="2px solid" borderRadius="1rem" boxShadow='lg'>
+      <Flex align="center" w='full'>
       <Box flex="1">
         <Textarea
           placeholder="Pen your thoughts down"
@@ -11,12 +13,7 @@ const CreatePost = () => {
           focusBorderColor="black"
           resize="none"
           rows="1"
-          sx={{
-            filter: `grayscale(100%)`,
-            "-webkit-filter": `grayscale(100%)`,
-            "-moz-filter": `grayscale(100%)`,
-            "-ms-filter": `grayscale(100%)`,
-          }}
+          sx={grayscale}
         />
       </Box>
       <Box>
@@ -30,7 +27,28 @@ const CreatePost = () => {
           }}
         />
       </Box>
-    </Flex>
+      </Flex>
+      <HStack>
+        <IconButton
+          variant="ghost"
+          colorScheme="black"
+          fontSize="1.5rem"
+          icon={<MdImage />}
+          _focus={{
+            outline: "none",
+          }}
+        />
+        <IconButton
+          variant="ghost"
+          colorScheme="black"
+          fontSize="1.5rem"
+          icon={<MdOutlineEmojiEmotions />}
+          _focus={{
+            outline: "none",
+          }}
+        />
+      </HStack>
+    </Box>
   );
 };
 
