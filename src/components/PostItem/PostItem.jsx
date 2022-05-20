@@ -3,7 +3,7 @@ import { MdFavoriteBorder, MdOutlineModeComment, MdBookmarkBorder } from "react-
 
 const PostItem = () => {
   return (
-    <Box padding="1rem" shadow='md' borderRadius='1rem'>
+    <Box padding="1rem" borderRadius='1rem' bg='white' border='2px solid'>
           <VStack align="stretch">
             <HStack>
               <Avatar size="md" name="Dan Abrahmov" />

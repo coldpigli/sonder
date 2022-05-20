@@ -8,7 +8,7 @@ const Feedlisting = () => {
         <Heading size="md">Scroll</Heading>
         <Text fontSize="sm">Showing Recent</Text>
       </HStack>
-      <VStack align="stretch" spacing="6">
+      <VStack align="stretch" spacing="6" borderRadius='1rem'>
         <PostItem/>
         <PostItem/>
         <PostItem/>
