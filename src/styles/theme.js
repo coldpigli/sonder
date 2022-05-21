@@ -8,9 +8,9 @@ export const customTheme = extendTheme(
         primary: '#1c7d5e',
       },
       fonts: {
-        body: "system-ui, sans-serif",
-        heading: "Georgia, serif",
-        mono: "Menlo, monospace",
+        body: 'Poppins, sans-serif',
+        heading: 'Poppins, sans-serif',
+        mono: 'Poppins, sans-serif',
       },
 
     },
