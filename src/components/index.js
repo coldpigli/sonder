@@ -7,6 +7,9 @@ import CreatePost from "./CreatePost/CreatePost";
 import GreetingHeader from "./GreetingHeader/GreetingHeader";
 import Feedlisting from "./Feedlisting/Feedlisting";
 import PostItem from "./PostItem/PostItem";
+import InfoBar from "./InfoBar/InfoBar";
+import UserSnippet from "./UserSnippet/UserSnippet";
+import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 
 export{
     TopBar,
@@ -17,5 +20,8 @@ export{
     CreatePost,
     GreetingHeader,
     Feedlisting,
-    PostItem
+    PostItem,
+    InfoBar,
+    UserSnippet,
+    AdditionalInfo
 }
