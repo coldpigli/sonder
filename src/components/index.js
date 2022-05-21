@@ -10,6 +10,7 @@ import PostItem from "./PostItem/PostItem";
 import InfoBar from "./InfoBar/InfoBar";
 import UserSnippet from "./UserSnippet/UserSnippet";
 import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
+import FindPeople from "./FindPeople/FindPeople";
 
 export{
     TopBar,
@@ -23,5 +24,6 @@ export{
     PostItem,
     InfoBar,
     UserSnippet,
-    AdditionalInfo
+    AdditionalInfo,
+    FindPeople
 }

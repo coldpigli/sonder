@@ -4,7 +4,7 @@ import {BiChevronRight} from 'react-icons/bi'
 
 const InfoBar = () => {
   return (
-        <Box p='1rem' borderRadius='1rem' bg='white' shadow='md'>
+        <Box p='0.5rem' borderRadius='1rem' bg='white' shadow='md'>
           <HStack justify='space-between'>
             <HStack>
               <Box bg='#FFE7CA' p='0.5rem' borderRadius='1rem'>
