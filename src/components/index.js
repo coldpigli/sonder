@@ -11,6 +11,7 @@ import InfoBar from "./InfoBar/InfoBar";
 import UserSnippet from "./UserSnippet/UserSnippet";
 import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 import FindPeople from "./FindPeople/FindPeople";
+import ProfileHeader from "./ProfileHeader/ProfileHeader";
 
 export{
     TopBar,
@@ -25,5 +26,6 @@ export{
     InfoBar,
     UserSnippet,
     AdditionalInfo,
-    FindPeople
+    FindPeople,
+    ProfileHeader
 }
