@@ -1,5 +1,5 @@
 import { Box, calc, VStack } from '@chakra-ui/react'
-import { InfoBar, UserSnippet } from 'components'
+import { FindPeople, InfoBar, UserSnippet } from 'components'
 import React from 'react'
 
 const AdditionalInfo = () => {
@@ -13,11 +13,12 @@ const AdditionalInfo = () => {
         padding='2rem'
         bg="#F8F8F8"
       >
-        <VStack align='stretch' spacing='6'>
+        <VStack align='stretch' spacing="8">
           <UserSnippet/>
           <InfoBar/>
           <InfoBar/>
           <InfoBar/>
+          <FindPeople/>
         </VStack>
       </Box>
   )
