@@ -1,6 +1,7 @@
 import { Button, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, VStack } from "@chakra-ui/react"
 import { validationMessages } from "constants";
 import { useFormik } from "formik";
+import { signUp } from "services";
 import * as Yup from "yup";
 
 const SignupForm = () => {
@@ -23,6 +24,8 @@ const SignupForm = () => {
             .min(8, validationMessages.passwordShort),
         }),
         onSubmit: (values, actions) => {
+          const {username, email, password} = values;
+          signUp(username, email, password);
           actions.resetForm();
         },
       })
