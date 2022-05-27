@@ -10,8 +10,8 @@ const AdditionalInfo = () => {
         position="sticky"
         top="1rem"
         borderRadius='1rem'
-        padding='2rem'
-        bg="#F8F8F8"
+        padding='1rem'
+        shadow='md'
       >
         <VStack align='stretch' spacing="8">
           <UserSnippet/>

@@ -20,7 +20,7 @@ import {
 
 const PostItem = () => {
   return (
-    <Box padding="1rem" borderRadius="1rem" bg="white">
+    <Box padding="1rem" borderRadius="1rem" bg="white" shadow='md'>
       <VStack align="stretch">
         <HStack justify="space-between">
           <HStack>
