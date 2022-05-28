@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, Image, Text, VStack } from '@chakra-ui/react'
+import {Heading, HStack, Image, Text, VStack } from '@chakra-ui/react'
 
 const FindPeople = () => {
   return (

@@ -1,4 +1,4 @@
-import {Box, Heading, HStack,StackDivider,Text, VStack } from "@chakra-ui/react";
+import {Box, Heading, HStack,Text, VStack } from "@chakra-ui/react";
 import { PostItem } from "components";
 
 const Feedlisting = () => {

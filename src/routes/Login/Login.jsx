@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Center, GridItem, Heading, Image, SimpleGrid, Text, VStack } from '@chakra-ui/react'
+import {Box, Center, GridItem, Heading, Image, SimpleGrid, Text, VStack } from '@chakra-ui/react'
 import { LoginForm } from 'components'
 import { urls } from 'constants/urls'
 import { Link } from "react-router-dom";
