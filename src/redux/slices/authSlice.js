@@ -1,11 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import { signupUser } from "services";
+import { loginUser, signupUser } from "services";
 
 const initialState = {
     authToken: "" || JSON.parse(localStorage.getItem("authToken")),
     userData: null || JSON.parse(localStorage.getItem("userData")),
     authStatus: "idle",
-    authError: null
 }
 
 const authSlice = createSlice({
@@ -25,13 +24,25 @@ const authSlice = createSlice({
         },
         [signupUser.fulfilled]: (state, action) => {
             state.userData = action.payload.createdUser;
-            console.log(action.payload);
             state.authToken = action.payload.encodedToken;
             localStorage.setItem("authToken", JSON.stringify(action.payload.encodedToken));
             localStorage.setItem("userData", JSON.stringify(action.payload.createdUser));
         },
         [signupUser.rejected]: (state) => {
             state.authStatus = "failed";
+        },
+        [loginUser.pending]: (state) => {
+            state.authStatus = 'loading'
+        },
+        [loginUser.fulfilled]: (state, action) => {
+            state.userData = action.payload.foundUser;
+            state.authToken = action.payload.encodedToken;
+            localStorage.setItem("authToken", JSON.stringify(action.payload.encodedToken));
+            localStorage.setItem("userData", JSON.stringify(action.payload.foundUser));
+        },
+        [loginUser.rejected]: (state) => {
+            console.log("login me error hua")
+            state.authStatus = 'failed'
         }
     }
 })

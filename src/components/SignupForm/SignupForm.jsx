@@ -1,13 +1,19 @@
 import { Button, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, VStack } from "@chakra-ui/react"
 import { validationMessages } from "constants";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { signupUser } from "services";
 import * as Yup from "yup";
 
 const SignupForm = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const redirectPath = location.state?.path || "/feed";
+    const {authToken} = useSelector((state)=>state.auth);
 
     const formik = useFormik({
         initialValues: {
@@ -38,6 +44,12 @@ const SignupForm = () => {
           actions.resetForm();
         },
       })
+
+  useEffect(()=>{
+    if(authToken){
+      navigate("/feed", {replace: true})
+    }
+  },[authToken])
 
   return (
     <VStack as="form" spacing="1rem" onSubmit={formik.handleSubmit} w={{base: "100%",md: "80%",xl: "80%"}}>
