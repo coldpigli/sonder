@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, IconButton, Textarea, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, IconButton, Textarea } from "@chakra-ui/react";
 import { MdAddBox, MdImage, MdOutlineEmojiEmotions } from "react-icons/md";
 import { grayscale } from "utils/grayscale";
 

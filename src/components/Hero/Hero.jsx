@@ -1,4 +1,4 @@
-import {Box, Button, Center, Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import {Box, Button, Center, Flex, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import { urls } from "constants/urls";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
