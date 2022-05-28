@@ -25,7 +25,7 @@ const Hero = () => {
         </Box>
       </VStack>
       <Center w={{base: "100%", md: "100%", xl: "50%", }}>
-        <video width="90%" height="30%" autoplay="true" muted="true" loop="true">
+        <video width="90%" height="30%" autoPlay={true} muted={true} loop={true}>
           <source src={urls.heroVideo} type="video/mp4"
           />
           Your browser does not support the video tag.

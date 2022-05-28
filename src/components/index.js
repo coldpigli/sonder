@@ -12,6 +12,7 @@ import UserSnippet from "./UserSnippet/UserSnippet";
 import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 import FindPeople from "./FindPeople/FindPeople";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
+import Mockman from "./Mockman/Mockman";
 
 export{
     TopBar,
@@ -27,5 +28,6 @@ export{
     UserSnippet,
     AdditionalInfo,
     FindPeople,
-    ProfileHeader
+    ProfileHeader,
+    Mockman
 }
