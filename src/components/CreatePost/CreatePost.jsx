@@ -4,7 +4,7 @@ import { grayscale } from "utils/grayscale";
 
 const CreatePost = () => {
   return (
-    <Box p="1rem" border="2px solid" borderRadius="1rem" boxShadow='md'>
+    <Box borderRadius="1rem">
       <Flex align="center" w='full'>
       <Box flex="1">
         <Textarea

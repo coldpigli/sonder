@@ -14,7 +14,6 @@ const AdditionalInfo = () => {
         shadow='md'
       >
         <VStack align='stretch' spacing="8">
-          <UserSnippet/>
           <InfoBar/>
           <InfoBar/>
           <InfoBar/>
