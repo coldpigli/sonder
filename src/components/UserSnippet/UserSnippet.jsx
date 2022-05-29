@@ -12,8 +12,23 @@ import {
 } from "@chakra-ui/react";
 import { MdSearch, MdNotificationsActive, MdExpandMore } from "react-icons/md";
 import { BsPersonSquare } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "redux/slices/authSlice";
 
 const UserSnippet = () => {
+
+  const navigate = useNavigate();
+  const {authToken} = useSelector((state)=>state.auth)
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userData");
+    dispatch(logout());
+    navigate("/login", {replace: true})
+  }
+
   return (
     <Box>
       <HStack>
@@ -56,7 +71,7 @@ const UserSnippet = () => {
             </MenuButton>
             <MenuList>
               <MenuItem>Profile</MenuItem>
-              <MenuItem>Logout</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </Box>

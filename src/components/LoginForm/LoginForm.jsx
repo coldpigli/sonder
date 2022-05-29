@@ -46,7 +46,7 @@ const LoginForm = () => {
         navigate("/feed", {replace: true});
       }
   }, [authToken])
-  console.log("authStuas", authStatus)
+
   return (
     <VStack as="form" spacing="1rem" onSubmit={formik.handleSubmit} w={{base: "100%",md: "80%",xl: "80%"}}>
       <FormControl isInvalid={formik.errors.username && formik.touched.username}>
