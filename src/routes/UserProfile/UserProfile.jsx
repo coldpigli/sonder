@@ -16,7 +16,7 @@ import {
 
 const UserProfile = () => {
   return (
-    <Box p="1rem" display="flex" gap="12">
+    <Box display="flex" gap="12">
       <Sidebar />
       <Box flex="2">
         <VStack align="stretch">

@@ -13,6 +13,7 @@ import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 import FindPeople from "./FindPeople/FindPeople";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import Mockman from "./Mockman/Mockman";
+import TopNav from "./TopNav/TopNav";
 
 export{
     TopBar,
@@ -29,5 +30,6 @@ export{
     AdditionalInfo,
     FindPeople,
     ProfileHeader,
-    Mockman
+    Mockman,
+    TopNav
 }
