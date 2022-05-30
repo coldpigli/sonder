@@ -4,6 +4,7 @@ import { MdOutlineLogout } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+
   let activeStyle = {
     backgroundColor: "#6C5DD3",
     borderRadius: "1rem",

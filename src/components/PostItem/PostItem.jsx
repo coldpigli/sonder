@@ -48,7 +48,7 @@ const PostItem = ({post}) => {
           </Menu>
         </HStack>
         <Box>
-          <Text fontSize='sm'>{content}</Text>
+          <Text fontSize='sm' color="#c5c5c5">{content}</Text>
         </Box>
         <HStack>
           <IconButton
