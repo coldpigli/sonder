@@ -1,6 +1,4 @@
 import { Box, calc, VStack } from '@chakra-ui/react'
-import { FindPeople, InfoBar, UserSnippet } from 'components'
-import React from 'react'
 
 const AdditionalInfo = () => {
   return (
@@ -9,15 +7,16 @@ const AdditionalInfo = () => {
         h={calc.subtract("100vh", "2rem")}
         position="sticky"
         top="1rem"
+        border="1px solid red"
         borderRadius='1rem'
         padding='1rem'
         shadow='md'
       >
         <VStack align='stretch' spacing="8">
+          {/* <InfoBar/>
           <InfoBar/>
           <InfoBar/>
-          <InfoBar/>
-          <FindPeople/>
+          <FindPeople/> */}
         </VStack>
       </Box>
   )

@@ -1,4 +1,4 @@
-import { Box, calc, Flex, Heading, Icon, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Icon, VStack } from "@chakra-ui/react";
 import { sidenavData } from "constants";
 import { MdOutlineLogout } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -13,7 +13,7 @@ const Sidebar = () => {
   return (
     <Box
       h="100vh"
-      bg="#242731"
+      bg="rgb(36, 39, 49)"
       position="sticky"
       p="1rem"
       top="0"

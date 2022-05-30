@@ -1,13 +1,14 @@
-import { Box, VStack } from "@chakra-ui/react";
-import { AdditionalInfo, CreatePost, Feedlisting, GreetingHeader, Sidebar, TopNav, UserSnippet} from "components";
+import {  Box, VStack } from "@chakra-ui/react";
+import { AdditionalInfo, CreatePost, Feedlisting, GreetingHeader, Sidebar, TopBar} from "components";
 
 const Feed = () => {
+
   return (
-    <Box display="flex" gap="12">
+    <Box display="flex" gap="12" color="white">
       <Sidebar />
-      <VStack minH="100vh" flex="2" gap="4" align="stretch" p='1.5rem 0'>
-        <UserSnippet/>
-        <GreetingHeader />
+      <VStack minH="100vh" flex="2" gap="4" align="stretch" p='1rem 0'>
+        <TopBar/>
+        <GreetingHeader/>
         <Box>
           <CreatePost />
         </Box>

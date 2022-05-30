@@ -1,38 +1,30 @@
-import { Box, Flex, HStack, IconButton, Textarea } from "@chakra-ui/react";
-import { MdAddBox, MdImage, MdOutlineEmojiEmotions } from "react-icons/md";
-import { grayscale } from "utils/grayscale";
+import { Box, Button, Flex, HStack, IconButton, Textarea } from "@chakra-ui/react";
+import { MdImage, MdOutlineEmojiEmotions } from "react-icons/md";
 
 const CreatePost = () => {
   return (
     <Box borderRadius="1rem">
-      <Flex align="center" w='full'>
-      <Box flex="1">
-        <Textarea
-          placeholder="Pen your thoughts down"
-          variant="unstyled"
-          focusBorderColor="black"
-          resize="none"
-          rows="1"
-          sx={grayscale}
-        />
-      </Box>
-      <Box>
-        <IconButton
-          variant="ghost"
-          colorScheme="black"
-          fontSize="3rem"
-          icon={<MdAddBox />}
-          _focus={{
-            outline: "none",
-          }}
-        />
-      </Box>
+      <Flex align="center" w="full">
+        <Box flex="1">
+          <Textarea
+            p='1rem'
+            size='sm'
+            borderRadius='1rem'
+            placeholder="Pen your thoughts down"
+            variant="unstyled"
+            bg="#242731"
+            focusBorderColor="none"
+            resize="none"
+            border="none"
+          />
+        </Box>
       </Flex>
-      <HStack>
+      <HStack mt='1rem' justify='space-between'>
+        <Box>
         <IconButton
           variant="ghost"
-          colorScheme="black"
           fontSize="1.5rem"
+          color="#808191"
           icon={<MdImage />}
           _focus={{
             outline: "none",
@@ -40,13 +32,15 @@ const CreatePost = () => {
         />
         <IconButton
           variant="ghost"
-          colorScheme="black"
           fontSize="1.5rem"
+          color="#808191"
           icon={<MdOutlineEmojiEmotions />}
           _focus={{
             outline: "none",
           }}
         />
+        </Box>
+        <Button bg='#6C5DD3'>Post</Button>
       </HStack>
     </Box>
   );

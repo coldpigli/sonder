@@ -5,7 +5,7 @@ import { RoutingConfigs } from "configs";
 function App() {
 
   return (
-    <Box className="App" bg="#21242D">
+    <Box className="App" bg="rgba(33, 36, 45, 1)">
       <RoutingConfigs/>
     </Box>
   );
