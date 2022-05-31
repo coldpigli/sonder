@@ -1,24 +1,20 @@
-import { Box, calc, VStack } from '@chakra-ui/react'
-import { FindPeople, InfoBar, UserSnippet } from 'components'
-import React from 'react'
+import { Box, Heading, VStack } from '@chakra-ui/react'
+import { FindPeople, InfoBar } from 'components'
 
 const AdditionalInfo = () => {
   return (
     <Box
         flex="1"
-        h={calc.subtract("100vh", "2rem")}
+        h='100vh'
         position="sticky"
-        top="1rem"
-        borderRadius='1rem'
-        padding='1rem'
-        shadow='md'
+        top='0'
+        borderLeft="0.5px solid rgba(128, 129, 145, 0.25)"
+        p='1rem'
       >
-        <VStack align='stretch' spacing="8">
-          <UserSnippet/>
-          <InfoBar/>
-          <InfoBar/>
-          <InfoBar/>
-          <FindPeople/>
+        <VStack align='stretch' spacing="8" bg = '#242731'>
+          <Box>
+            <Heading>kjsdnaskjdn</Heading>
+          </Box>
         </VStack>
       </Box>
   )

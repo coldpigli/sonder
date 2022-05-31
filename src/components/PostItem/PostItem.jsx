@@ -18,16 +18,19 @@ import {
   MdOutlineMoreVert,
 } from "react-icons/md";
 
-const PostItem = () => {
+const PostItem = ({post}) => {
+
+  const {username, content, comments, likes} = post;
+
   return (
-    <Box padding="1rem" borderRadius="1rem" bg="white" shadow='md'>
+    <Box padding="1rem" borderRadius="1rem" bg="#242731">
       <VStack align="stretch">
         <HStack justify="space-between">
           <HStack>
-            <Avatar size="md" name="Dan Abrahmov" />
+            <Avatar size="md" name={username} />
             <VStack align="stretch" spacing="0">
-              <Heading size="sm">Dan Abrahmov</Heading>
-              <Text fontSize="sm">31m ago</Text>
+              <Heading size="sm">{username}</Heading>
+              <Text fontSize="xs" color="#808191">31m ago</Text>
             </VStack>
           </HStack>
           <Menu>
@@ -45,14 +48,7 @@ const PostItem = () => {
           </Menu>
         </HStack>
         <Box>
-          <Text>
-            Please don't take your health for granted! Work on it when you are
-            fit and having maximum energy. Do regular health checkups.Aur haa,
-            health insurance karwa lena please. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Qui, modi amet facilis quibusdam iste
-            laboriosam cupiditate maxime ipsum dolorum reiciendis sunt id eius
-            eum, praesentium sapiente corporis.
-          </Text>
+          <Text fontSize='sm' color="#c5c5c5">{content}</Text>
         </Box>
         <HStack>
           <IconButton

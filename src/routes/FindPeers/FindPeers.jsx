@@ -4,7 +4,7 @@ import React from 'react'
 
 const FindPeers = () => {
   return (
-    <Box p='1rem' display='flex'>
+    <Box display='flex'>
       <Sidebar/>
       <Box>
         Peers

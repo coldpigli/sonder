@@ -1,41 +1,53 @@
-import { Box, calc, Flex, Icon, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Icon, VStack } from "@chakra-ui/react";
 import { sidenavData } from "constants";
 import { MdOutlineLogout } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+
   let activeStyle = {
-    borderLeft: "4px solid white",
+    backgroundColor: "#6C5DD3",
+    borderRadius: "1rem",
+    color: "#FFFFFF",
   };
 
   return (
     <Box
-      h={calc.subtract("100vh", "2rem")}
-      bg="black"
-      borderRadius="1rem"
+      h="100vh"
+      bg="rgb(36, 39, 49)"
       position="sticky"
-      top="1rem"
       p="1rem"
-      boxShadow='lg'
+      top="0"
+      borderRight="0.5px solid rgba(128, 129, 145, 0.25)"
     >
       <VStack h="100%" justify="space-between">
-        <Flex direction="column" justify="space-between" h="50%  ">
+        <Box color="white">
+          <Heading>S.</Heading>
+        </Box>
+        <Flex direction="column" justify="space-between" h="50%">
           {sidenavData.map((itemInfo) => {
             return (
               <NavLink
                 to={itemInfo.path}
                 key={itemInfo.id}
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                style={({ isActive }) =>
+                  isActive ? activeStyle : { color: "#808191" }
+                }
               >
                 <Flex p="0.5rem" justifyContent="center">
-                  <Icon as={itemInfo.icon} color="white" w={8} h={8} />
+                  <Icon
+                    as={itemInfo.icon}
+                    w={6}
+                    h={6}
+                    _hover={{ color: "white" }}
+                  />
                 </Flex>
               </NavLink>
             );
           })}
         </Flex>
         <Box>
-          <Icon as={MdOutlineLogout} color="white" w={8} h={8} />
+          <Icon as={MdOutlineLogout} color="#808191" w={8} h={8} />
         </Box>
       </VStack>
     </Box>

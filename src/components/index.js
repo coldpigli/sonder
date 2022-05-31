@@ -8,11 +8,11 @@ import GreetingHeader from "./GreetingHeader/GreetingHeader";
 import Feedlisting from "./Feedlisting/Feedlisting";
 import PostItem from "./PostItem/PostItem";
 import InfoBar from "./InfoBar/InfoBar";
-import UserSnippet from "./UserSnippet/UserSnippet";
 import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 import FindPeople from "./FindPeople/FindPeople";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import Mockman from "./Mockman/Mockman";
+import TopNav from "./TopNav/TopNav";
 
 export{
     TopBar,
@@ -25,9 +25,9 @@ export{
     Feedlisting,
     PostItem,
     InfoBar,
-    UserSnippet,
     AdditionalInfo,
     FindPeople,
     ProfileHeader,
-    Mockman
+    Mockman,
+    TopNav
 }
