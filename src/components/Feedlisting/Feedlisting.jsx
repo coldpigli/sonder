@@ -9,6 +9,8 @@ const Feedlisting = () => {
   const {userData} = useSelector((state)=>state.auth);
   const {postList} = useSelector((state)=>state.posts);
   const dispatch = useDispatch();
+  console.log("User data", userData);
+  console.log("Post list", postList);
 
   useEffect(()=>{
     dispatch(getAllPosts())
