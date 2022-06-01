@@ -11,8 +11,6 @@ const SignupForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
-    const redirectPath = location.state?.path || "/feed";
     const {authToken} = useSelector((state)=>state.auth);
 
     const formik = useFormik({

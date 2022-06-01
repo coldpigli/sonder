@@ -12,15 +12,37 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import {
-  MdFavoriteBorder,
-  MdOutlineModeComment,
-  MdBookmarkBorder,
+  MdOutlineIosShare,
   MdOutlineMoreVert,
 } from "react-icons/md";
+import { BiUpvote, BiDownvote, BiCommentAdd, BiBookmark } from "react-icons/bi";
 
-const PostItem = ({post}) => {
-
-  const {username, content, comments, likes} = post;
+const PostItem = ({ post }) => {
+  const { username, content, comments, likes } = post;
+  console.log("the likes", likes);
+  const engageButtons = [
+    {
+      id: 1,
+      icon: <BiUpvote />,
+      name: "Upvote",
+      stat: likes.likeCount
+    },
+    {
+      id: 2,
+      icon: <BiCommentAdd />,
+      name: "Comment",
+    },
+    {
+      id: 3,
+      icon: <BiBookmark />,
+      name: "Bookmark",
+    },
+    {
+      id: 4,
+      icon: <MdOutlineIosShare />,
+      name: "Share",
+    },
+  ];
 
   return (
     <Box padding="1rem" borderRadius="1rem" bg="#242731">
@@ -30,7 +52,9 @@ const PostItem = ({post}) => {
             <Avatar size="md" name={username} />
             <VStack align="stretch" spacing="0">
               <Heading size="sm">{username}</Heading>
-              <Text fontSize="xs" color="#808191">31m ago</Text>
+              <Text fontSize="xs" color="#808191">
+                31m ago
+              </Text>
             </VStack>
           </HStack>
           <Menu>
@@ -48,36 +72,24 @@ const PostItem = ({post}) => {
           </Menu>
         </HStack>
         <Box>
-          <Text fontSize='sm' color="#c5c5c5">{content}</Text>
+          <Text fontSize="sm" color="#c5c5c5">
+            {content}
+          </Text>
         </Box>
-        <HStack>
-          <IconButton
-            variant="ghost"
-            colorScheme="black"
-            fontSize="1.7rem"
-            icon={<MdFavoriteBorder />}
-            _focus={{
-              outline: "none",
-            }}
-          />
-          <IconButton
-            variant="ghost"
-            colorScheme="black"
-            fontSize="1.5rem"
-            icon={<MdOutlineModeComment />}
-            _focus={{
-              outline: "none",
-            }}
-          />
-          <IconButton
-            variant="ghost"
-            colorScheme="black"
-            fontSize="1.5rem"
-            icon={<MdBookmarkBorder />}
-            _focus={{
-              outline: "none",
-            }}
-          />
+        <HStack justify="space-between">
+          {engageButtons.map((item) => (
+            <HStack color="#808191" align="center">
+              <IconButton
+                variant="ghost"
+                fontSize="1.5rem"
+                icon={item.icon}
+                _focus={{
+                  outline: "none",
+                }}
+              />
+             <Text>{item.stat}</Text>
+            </HStack>
+          ))}
         </HStack>
       </VStack>
     </Box>
