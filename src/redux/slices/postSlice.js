@@ -1,5 +1,6 @@
-const { createSlice } = require("@reduxjs/toolkit")
-const { getAllPosts } = require("services")
+import {createSlice} from "@reduxjs/toolkit"
+import { addNewPost, getAllPosts } from "services"
+
 
 const initialState = {
     postList: [],
@@ -23,7 +24,20 @@ const postSlice = createSlice({
             state.postList = posts;
             state.postStatus = "success"
         },
-        [getAllPosts.rejected]: (state, action) => {
+        [getAllPosts.rejected]: (state) => {
+            state.postStatus = "failed"
+        },
+        [addNewPost.pending]: (state) => {
+            state.postStatus = "loading"
+        },
+        [addNewPost.fulfilled]: (state, action) => {
+            const {posts} = action.payload;
+            console.log("action payload", action.payload);
+            console.log("Posts", posts)
+            state.postList = posts;
+            state.postStatus = "success"
+        },
+        [addNewPost.rejected]: (state) => {
             state.postStatus = "failed"
         }
     }

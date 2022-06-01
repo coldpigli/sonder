@@ -1,46 +1,98 @@
-import { Box, Button, Flex, HStack, IconButton, Textarea } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  HStack,
+  IconButton,
+  Textarea,
+} from "@chakra-ui/react";
 import { MdImage, MdOutlineEmojiEmotions } from "react-icons/md";
+import Picker from "emoji-picker-react";
+import { useFormik} from "formik";
+import { useState } from "react";
+import * as Yup from "yup";
+import { validationMessages } from "constants";
+import { useDispatch } from "react-redux";
+import { addNewPost } from "services";
 
 const CreatePost = () => {
+  const [emojiPickerActive, setEmojiPickerActive] = useState(false);
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      postData: ""
+    },
+    validationSchema: Yup.object({
+      postData: Yup.string().required(validationMessages.userNameEmpty),
+    }),
+    onSubmit: (values, actions) => {
+      const { postData } = values;
+      dispatch(addNewPost({content: postData}));
+      actions.resetForm();
+    },
+  });
+
+  const handleEmojiPicker = () => {
+    setEmojiPickerActive((prev) => !prev);
+  };
+
   return (
-    <Box borderRadius="1rem">
+    <Box borderRadius="1rem" as="form" onSubmit={formik.handleSubmit}>
       <Flex align="center" w="full">
         <Box flex="1">
-          <Textarea
-            p='1rem'
-            size='sm'
-            borderRadius='1rem'
-            placeholder="Pen your thoughts down"
-            variant="unstyled"
-            bg="#242731"
-            focusBorderColor="none"
-            resize="none"
-            border="none"
-          />
+          <FormControl>
+            <Textarea
+              isInvalid={formik.errors.postData}
+              id="postData"
+              p="1rem"
+              size="sm"
+              borderRadius="1rem"
+              placeholder="Pen your thoughts down"
+              variant="unstyled"
+              bg="#242731"
+              focusBorderColor="none"
+              resize="none"
+              border="none"
+              {...formik.getFieldProps("postData")}
+            />
+          </FormControl>
         </Box>
       </Flex>
-      <HStack mt='1rem' justify='space-between'>
+      <HStack mt="1rem" justify="space-between">
         <Box>
-        <IconButton
-          variant="ghost"
-          fontSize="1.5rem"
-          color="#808191"
-          icon={<MdImage />}
-          _focus={{
-            outline: "none",
-          }}
-        />
-        <IconButton
-          variant="ghost"
-          fontSize="1.5rem"
-          color="#808191"
-          icon={<MdOutlineEmojiEmotions />}
-          _focus={{
-            outline: "none",
-          }}
-        />
+          <IconButton
+            variant="ghost"
+            fontSize="1.5rem"
+            color="#808191"
+            icon={<MdImage />}
+            _focus={{
+              outline: "none",
+            }}
+          />
+          <IconButton
+            variant="ghost"
+            fontSize="1.5rem"
+            color="#808191"
+            onClick={handleEmojiPicker}
+            icon={<MdOutlineEmojiEmotions />}
+            _focus={{
+              outline: "none",
+            }}
+          />
+          {emojiPickerActive && (
+            <Picker
+              pickerStyle={{
+                color: "#808191",
+                boxShadow: "none",
+                border: "none",
+              }}
+            />
+          )}
         </Box>
-        <Button bg='#6C5DD3'>Post</Button>
+        <Button bg="#6C5DD3" type="submit">
+          Post
+        </Button>
       </HStack>
     </Box>
   );
