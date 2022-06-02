@@ -2,7 +2,7 @@ import {Heading, HStack, Image, Text, VStack } from '@chakra-ui/react'
 
 const FindPeople = () => {
   return (
-    <VStack  p='1rem' borderRadius='1rem' bg='white' shadow='md' align='stretch'>
+    <VStack  p='1rem' borderRadius='1rem' shadow='md' align='stretch'>
         <HStack justify='space-between'>
             <Heading size='sm'>
                 Explore

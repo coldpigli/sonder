@@ -11,10 +11,14 @@ const AdditionalInfo = () => {
         borderLeft="0.5px solid rgba(128, 129, 145, 0.25)"
         p='1rem'
       >
-        <VStack align='stretch' spacing="8" bg = '#242731'>
-          <Box>
-            <Heading>kjsdnaskjdn</Heading>
-          </Box>
+        <VStack align='stretch' spacing="8" borderRadius='1rem' p='0 1rem'>
+            <Heading alignSelf='center'>Basic Stats</Heading>
+            <VStack spacing='4' align='stretch'>
+              <InfoBar/>
+              <InfoBar/>
+              <InfoBar/>
+            </VStack>
+            <FindPeople/>
         </VStack>
       </Box>
   )

@@ -56,9 +56,9 @@ const TopBar = () => {
                 _focus={{outline:"none"}}
               />
             </MenuButton>
-            <MenuList bg="#242731">
-              <MenuItem>Profile</MenuItem>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            <MenuList bg="#21242D">
+              <MenuItem onClick={()=>navigate("/profile")} _hover={{backgroundColor: "#242731", color: "white"}}_focus={{backgroundColor: "#242731", color: "white"}}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout} _hover={{backgroundColor: "#242731", color: "white"}} _focus={{backgroundColor: "#242731", color: "white"}}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </Box>

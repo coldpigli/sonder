@@ -4,14 +4,14 @@ import {BiChevronRight} from 'react-icons/bi'
 
 const InfoBar = () => {
   return (
-        <Box p='0.5rem' borderRadius='1rem' bg='white' shadow='md'>
+        <Box p='0.5rem' borderRadius='1rem' bg='#242731'>
           <HStack justify='space-between'>
             <HStack>
-              <Box bg='#FFE7CA' p='0.5rem' borderRadius='1rem'>
+              <Box bg='#6C5DD3' p='0.5rem' borderRadius='1rem'>
                 <Icon w={8} h={8} as={SiCloudfoundry}/>
               </Box>
               <VStack align='stretch' spacing='0'>
-                <Text fontSize='sm'>Thoughts Shared</Text>
+                <Text fontSize='sm' color="#808191">Followers</Text>
                 <Heading size='md'>80</Heading>
               </VStack>
             </HStack>
