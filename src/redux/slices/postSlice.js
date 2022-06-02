@@ -44,13 +44,12 @@ const postSlice = createSlice({
         },
         [likeOrDislikePost.fulfilled]: (state, action) => {
             const {posts} = action.payload;
-            console.log("The posts from like Post slice", posts);
             state.postList = posts;
             state.postStatus = "success"
         },
         [likeOrDislikePost.rejected]: (state) => {
             state.postStatus = "failed"
-        }
+        },
     }
 })
 

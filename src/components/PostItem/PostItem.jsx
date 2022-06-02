@@ -14,15 +14,14 @@ import {
 import { MdOutlineIosShare, MdOutlineMoreVert } from "react-icons/md";
 import { BiUpvote, BiCommentAdd, BiBookmark } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { likeOrDislikePost } from "services";
-import { checkUserPresence } from "utils/helperFunctions";
+import { bookmarkHandler, likeOrDislikePost } from "services";
+import { checkIfBookmarked, checkUserPresence } from "utils";
 
 const PostItem = ({ post }) => {
   const { username, content, comments, likes, _id } = post;
   const { likeCount, likedBy } = likes;
   const { userData } = useSelector((state) => state.auth);
   const currentUser = userData.username;
-
   const dispatch = useDispatch();
   const engageButtons = [
     {
@@ -43,15 +42,18 @@ const PostItem = ({ post }) => {
       name: "Comment",
       stat: likeCount,
       clickHandler: () => {
-        console.log("From comment");
+        console.log("hello") //to-do
       },
     },
     {
       id: 3,
       icon: <BiBookmark />,
       name: "Bookmark",
+      active: checkIfBookmarked(userData.bookmarks, post),
       clickHandler: () => {
-        console.log("From Bookmark");
+        checkIfBookmarked(userData.bookmarks, post)?
+        dispatch(bookmarkHandler({type: "remove-bookmark", _id: _id})):
+        dispatch(bookmarkHandler({type: "bookmark", _id: _id}));
       },
     },
     {
@@ -59,7 +61,7 @@ const PostItem = ({ post }) => {
       icon: <MdOutlineIosShare />,
       name: "Share",
       clickHandler: () => {
-        console.log("From Share");
+        console.log("From Share"); //to-do
       },
     },
   ];

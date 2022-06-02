@@ -33,10 +33,23 @@ async(postData, {getState, rejectWithValue})=>{
         console.log(err);
         return rejectWithValue(err);
     }
-})
+});
+
+const bookmarkHandler = createAsyncThunk("auth/bookmarkHandler",
+async(postData, {getState, rejectWithValue})=>{
+    try{
+        const {authToken} = getState().auth;
+        const res = await axios.post(`/api/users/${postData.type}/${postData._id}`,{},{headers: {authorization: authToken}});
+        return res.data;
+    } catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+});
 
 export {
     getAllPosts,
     addNewPost,
-    likeOrDislikePost
+    likeOrDislikePost,
+    bookmarkHandler
 }
