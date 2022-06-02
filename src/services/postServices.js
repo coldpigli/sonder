@@ -35,7 +35,7 @@ async(postData, {getState, rejectWithValue})=>{
     }
 });
 
-const bookmarkHandler = createAsyncThunk("auth/bookmarkHandler",
+const bookmarkHandler = createAsyncThunk("post/bookmarkHandler",
 async(postData, {getState, rejectWithValue})=>{
     try{
         const {authToken} = getState().auth;
@@ -47,9 +47,22 @@ async(postData, {getState, rejectWithValue})=>{
     }
 });
 
+const deletePost = createAsyncThunk("post/deletePost",
+async(postData, {getState, rejectWithValue})=>{
+    try{
+        const {authToken} = getState().auth;
+        const res = await axios.delete(`/api/posts/${postData._id}`, {headers: {authorization: authToken}});
+        return res.data;
+    }catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+})
+
 export {
     getAllPosts,
     addNewPost,
     likeOrDislikePost,
-    bookmarkHandler
+    bookmarkHandler,
+    deletePost  
 }
