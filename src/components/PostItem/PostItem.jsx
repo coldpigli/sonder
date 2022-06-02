@@ -87,6 +87,8 @@ const PostItem = ({ post }) => {
                 icon={<MdOutlineMoreVert />}
                 variant="outline"
                 _focus={{ boxShadow: "none" }}
+                _hover={{bg: "none"}}
+                _active={{bg: "none"}}
               />
               <MenuList bg="#21242D">
                 <MenuItem
