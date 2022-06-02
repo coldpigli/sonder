@@ -1,2 +1,6 @@
-import { grayscale } from "./grayscale";
-import { checkUserPresence } from "./helperFunctions";
+import { checkUserPresence, checkIfBookmarked } from "./helperFunctions";
+
+export {
+    checkUserPresence, 
+    checkIfBookmarked
+}

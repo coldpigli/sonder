@@ -7,6 +7,7 @@ import { getAllPosts } from "services";
 const Feedlisting = () => {
 
   const {postList} = useSelector((state)=>state.posts);
+  const {userData} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
   
   useEffect(()=>{
