@@ -3,5 +3,5 @@ export const checkUserPresence = (arr, value) => {
 }
 
 export const checkIfBookmarked = (bookmarks, post) => {
-    return bookmarks.find((item)=>item._id === post._id);
+    return bookmarks.find((postId)=>postId === post._id);
 } 

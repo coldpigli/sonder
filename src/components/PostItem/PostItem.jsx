@@ -87,9 +87,9 @@ const PostItem = ({ post }) => {
               variant="outline"
               _focus={{ boxShadow: "none" }}
             />
-            <MenuList>
-              <MenuItem>Edit Post</MenuItem>
-              <MenuItem>Delete Post</MenuItem>
+            <MenuList bg="#21242D">
+              <MenuItem _hover={{backgroundColor: "#242731", color: "white"}} _focus={{backgroundColor: "#242731", color: "white"}}>Edit Post</MenuItem>
+              <MenuItem _hover={{backgroundColor: "#242731", color: "white"}} _focus={{backgroundColor: "#242731", color: "white"}}>Delete Post</MenuItem>
             </MenuList>
           </Menu>
         </HStack>
