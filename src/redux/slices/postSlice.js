@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit"
 import { addNewPost, getAllPosts } from "services"
+import { likeOrDislikePost } from "services/postServices"
 
 
 const initialState = {
@@ -32,12 +33,22 @@ const postSlice = createSlice({
         },
         [addNewPost.fulfilled]: (state, action) => {
             const {posts} = action.payload;
-            console.log("action payload", action.payload);
-            console.log("Posts", posts)
             state.postList = posts;
             state.postStatus = "success"
         },
         [addNewPost.rejected]: (state) => {
+            state.postStatus = "failed"
+        },
+        [likeOrDislikePost.pending]: (state) => {
+            state.postStatus = "loading"
+        },
+        [likeOrDislikePost.fulfilled]: (state, action) => {
+            const {posts} = action.payload;
+            console.log("The posts from like Post slice", posts);
+            state.postList = posts;
+            state.postStatus = "success"
+        },
+        [likeOrDislikePost.rejected]: (state) => {
             state.postStatus = "failed"
         }
     }

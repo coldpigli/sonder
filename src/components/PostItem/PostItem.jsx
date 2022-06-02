@@ -11,36 +11,56 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import {
-  MdOutlineIosShare,
-  MdOutlineMoreVert,
-} from "react-icons/md";
-import { BiUpvote, BiDownvote, BiCommentAdd, BiBookmark } from "react-icons/bi";
+import { MdOutlineIosShare, MdOutlineMoreVert } from "react-icons/md";
+import { BiUpvote, BiCommentAdd, BiBookmark } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { likeOrDislikePost } from "services";
+import { checkUserPresence } from "utils/helperFunctions";
 
 const PostItem = ({ post }) => {
-  const { username, content, comments, likes } = post;
-  console.log("the likes", likes);
+  const { username, content, comments, likes, _id } = post;
+  const { likeCount, likedBy } = likes;
+  const { userData } = useSelector((state) => state.auth);
+  const currentUser = userData.username;
+
+  const dispatch = useDispatch();
   const engageButtons = [
     {
       id: 1,
       icon: <BiUpvote />,
       name: "Upvote",
-      stat: likes.likeCount
+      active: checkUserPresence(likedBy, currentUser),
+      stat: likeCount,
+      clickHandler: () => {
+        checkUserPresence(likedBy, currentUser)
+          ? dispatch(likeOrDislikePost({ type: "dislike", _id: _id }))
+          : dispatch(likeOrDislikePost({ type: "like", _id: _id }));
+      },
     },
     {
       id: 2,
       icon: <BiCommentAdd />,
       name: "Comment",
+      stat: likeCount,
+      clickHandler: () => {
+        console.log("From comment");
+      },
     },
     {
       id: 3,
       icon: <BiBookmark />,
       name: "Bookmark",
+      clickHandler: () => {
+        console.log("From Bookmark");
+      },
     },
     {
       id: 4,
       icon: <MdOutlineIosShare />,
       name: "Share",
+      clickHandler: () => {
+        console.log("From Share");
+      },
     },
   ];
 
@@ -80,14 +100,16 @@ const PostItem = ({ post }) => {
           {engageButtons.map((item) => (
             <HStack color="#808191" align="center">
               <IconButton
-                variant="ghost"
                 fontSize="1.5rem"
                 icon={item.icon}
+                variant="unstyled"
+                color={item.active ? "#6C5DD3" : "#808191"}
+                onClick={item.clickHandler}
                 _focus={{
                   outline: "none",
                 }}
               />
-             <Text>{item.stat}</Text>
+              <Text>{item.stat}</Text>
             </HStack>
           ))}
         </HStack>

@@ -15,9 +15,19 @@ const addNewPost = createAsyncThunk("posts/addNewPost",
 async(postData, {getState, rejectWithValue})=>{
     try{
         const {authToken} = getState().auth;
-        console.log("PostData", postData);
         const res = await axios.post('/api/posts',{postData},{headers: {authorization: authToken}});
-        console.log("Returned data after adding your post",res.data)
+        return res.data;
+    }catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+})
+
+const likeOrDislikePost = createAsyncThunk("posts/likeOrDislikePost",
+async(postData, {getState, rejectWithValue})=>{
+    try{
+        const {authToken} = getState().auth;
+        const res = await axios.post(`/api/posts/${postData.type}/${postData._id}`,{},{headers: {authorization: authToken}});
         return res.data;
     }catch(err){
         console.log(err);
@@ -27,5 +37,6 @@ async(postData, {getState, rejectWithValue})=>{
 
 export {
     getAllPosts,
-    addNewPost
+    addNewPost,
+    likeOrDislikePost
 }

@@ -1,10 +1,11 @@
 import { signupUser } from "./authServices";
 import { loginUser } from "./authServices";
-import { getAllPosts, addNewPost } from "./postServices";
+import { getAllPosts, addNewPost, likeOrDislikePost } from "./postServices";
 
 export{
     signupUser,
     loginUser,
     getAllPosts,
-    addNewPost
+    addNewPost,
+    likeOrDislikePost
 }
