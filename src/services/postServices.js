@@ -83,6 +83,7 @@ async(postData, {getState, rejectWithValue})=>{
     }
 })
 
+
 export {
     getAllPosts,
     getSinglePost,
@@ -90,5 +91,5 @@ export {
     likeOrDislikePost,
     bookmarkHandler,
     deletePost,
-    editPost
+    editPost,
 }

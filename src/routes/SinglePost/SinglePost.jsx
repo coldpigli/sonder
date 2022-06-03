@@ -1,7 +1,5 @@
 import {
-  Avatar,
   Box,
-  Heading,
   HStack,
   IconButton,
   Text,
@@ -10,7 +8,8 @@ import {
 } from "@chakra-ui/react";
 import {
   AdditionalInfo,
-  CommentCard,
+  CommentInput,
+  CommentList,
   PostItem,
   Sidebar,
   TopBar,
@@ -25,7 +24,6 @@ const SinglePost = () => {
   const { id } = useParams();
   const { postList } = useSelector((state) => state.posts);
   const postItem = postList.find((item) => item._id === id);
-  const { username, comments } = postItem;
   const navigate = useNavigate();
 
   return (
@@ -54,12 +52,11 @@ const SinglePost = () => {
             />
             <Text>Feed</Text>
           </HStack>
-          {postItem && <PostItem post={postItem} />}
-          <Box p="1rem" borderTop="1px solid rgba(128, 129, 145, 0.25)">
-            {comments.map((comment) => (
-              <CommentCard comment={comment} />
-            ))}
-          </Box>
+          {postItem && <Box borderBottom="1px solid rgba(128, 129, 145, 0.25)"><PostItem post={postItem}/></Box>}
+          <CommentInput postId = {postItem._id}/>
+          {
+              postItem.comments && <CommentList postId={postItem._id}/>
+          }
         </Box>
       </VStack>
       {!smallerDevice && <AdditionalInfo />}

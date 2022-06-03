@@ -21,7 +21,6 @@ import { EditPostModal } from "components";
 import { useNavigate } from "react-router-dom";
 
 const PostItem = ({ post }) => {
-  console.log("Post received", post)
   const { username, content, comments, likes, _id } = post;
   const { likeCount, likedBy } = likes;
   const { userData } = useSelector((state) => state.auth);
