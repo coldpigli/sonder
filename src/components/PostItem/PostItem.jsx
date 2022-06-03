@@ -18,14 +18,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookmarkHandler, deletePost, likeOrDislikePost } from "services";
 import { checkIfBookmarked, checkUserPresence } from "utils";
 import { EditPostModal } from "components";
+import { useNavigate } from "react-router-dom";
 
 const PostItem = ({ post }) => {
+  console.log("Post received", post)
   const { username, content, comments, likes, _id } = post;
   const { likeCount, likedBy } = likes;
   const { userData } = useSelector((state) => state.auth);
   const currentUser = userData.username;
   const dispatch = useDispatch();
   const {isOpen, onOpen, onClose} = useDisclosure();
+  const navigate = useNavigate();
+
   const engageButtons = [
     {
       id: 1,
@@ -43,9 +47,9 @@ const PostItem = ({ post }) => {
       id: 2,
       icon: <BiCommentAdd />,
       name: "Comment",
-      stat: likeCount,
+      stat: comments?.length || 0,
       clickHandler: () => {
-        console.log("hello"); //to-do
+        navigate(`/post/${_id}`);
       },
     },
     {

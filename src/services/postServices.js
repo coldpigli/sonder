@@ -11,6 +11,18 @@ async ()=>{
     }
 });
 
+const getSinglePost = createAsyncThunk("posts/getSinglePost",
+async (postId, {rejectWithValue})=>{
+    try{
+        const res = await axios.get(`/api/posts/${postId}`);
+        console.log("Is this running ???", res);
+        return res.data;
+    } catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+})
+
 const addNewPost = createAsyncThunk("posts/addNewPost",
 async(postData, {getState, rejectWithValue})=>{
     try{
@@ -73,6 +85,7 @@ async(postData, {getState, rejectWithValue})=>{
 
 export {
     getAllPosts,
+    getSinglePost,
     addNewPost,
     likeOrDislikePost,
     bookmarkHandler,
