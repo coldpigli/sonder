@@ -11,13 +11,13 @@ async ()=>{
     }
 });
 
-const getSinglePost = createAsyncThunk("posts/getSinglePost",
-async (postId, {rejectWithValue})=>{
+const getCurrentPost = createAsyncThunk('posts/getSinglePost',
+async(postId, {rejectWithValue})=>{
     try{
+        console.log('the postId being sent is', postId);
         const res = await axios.get(`/api/posts/${postId}`);
-        console.log("Is this running ???", res);
         return res.data;
-    } catch(err){
+    }catch(err){
         console.log(err);
         return rejectWithValue(err);
     }
@@ -86,7 +86,7 @@ async(postData, {getState, rejectWithValue})=>{
 
 export {
     getAllPosts,
-    getSinglePost,
+    getCurrentPost,
     addNewPost,
     likeOrDislikePost,
     bookmarkHandler,

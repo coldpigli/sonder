@@ -16,7 +16,6 @@ import * as Yup from "yup";
 const CommentInput = ({postId}) => {
   const { userData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log("the id received is", postId);
 
   const formik = useFormik({
     initialValues: {

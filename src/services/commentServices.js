@@ -14,13 +14,11 @@ async(postId, {rejectWithValue})=>{
 })
 
 const addNewCommentToPost = createAsyncThunk("comment/addNewComment",
-async(commentData, {getState, rejectWithValue})=>{
+async(commentMetaData, {getState, rejectWithValue})=>{
     try{
-        const {postId, comment} = commentData;
-        console.log(commentData);
+        const {postId, comment} = commentMetaData;
         const {authToken} = getState().auth;
         const res = await axios.post(`/api/comments/add/${postId}`, {commentData: comment}, {headers: {authorization: authToken}});
-        console.log('comment array returned', res.data);
         return res.data
     }catch(err){
         console.log(err);
@@ -28,7 +26,21 @@ async(commentData, {getState, rejectWithValue})=>{
     }
 })
 
+const deleteComment = createAsyncThunk('comment/deleteComment',
+async(commentMetaData, {getState, rejectWithValue})=>{
+    try{
+        const {postId, commentId} = commentMetaData;
+        const {authToken} = getState().auth;
+        const res = await axios.post(`/api/comments/delete/${postId}/${commentId}`, {}, {headers: {authorization: authToken}});
+        return res.data
+    }catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+})
+ 
 export{
     addNewCommentToPost,
-    getCommentsOfPost
+    getCommentsOfPost,
+    deleteComment
 }

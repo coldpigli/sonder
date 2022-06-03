@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewPost, getAllPosts, deletePost, editPost, getSinglePost, addNewCommentToPost } from "services";
+import { addNewPost, getAllPosts, deletePost, editPost, getCurrentPost } from "services";
 import { likeOrDislikePost } from "services/postServices";
 
 const initialState = {
   postList: [],
-  singlePost: {},
+  singlePost: null,
   postStatus: "idle",
 };
 
@@ -31,17 +31,17 @@ const postSlice = createSlice({
       state.postStatus = "failed";
     },
 
-    [getSinglePost.pending]: (state) => {
-      state.postStatus="loading";
+    [getCurrentPost.pending]: (state) => {
+      state.postStatus = "loading";
     },
-
-    [getSinglePost.fulfilled]: (state, action) => {
-      const { post } = action.payload;
+    [getCurrentPost.fulfilled]: (state, action) => {
+      const {post} = action.payload;
+      console.log("SLice tak aaya function");
       state.singlePost = post;
       state.postStatus = "success";
     },
 
-    [getSinglePost.rejected]: (state) => {
+    [getCurrentPost.rejected]: (state) => {
       state.postStatus = "failed";
     },
 

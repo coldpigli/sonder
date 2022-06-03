@@ -18,6 +18,7 @@ import BottomNav from "components/BottomNav/BottomNav";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
+import { useEffect } from "react";
 
 const SinglePost = () => {
   const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
@@ -52,11 +53,13 @@ const SinglePost = () => {
             />
             <Text>Feed</Text>
           </HStack>
-          {postItem && <Box borderBottom="1px solid rgba(128, 129, 145, 0.25)"><PostItem post={postItem}/></Box>}
-          <CommentInput postId = {postItem._id}/>
-          {
-              postItem.comments && <CommentList postId={postItem._id}/>
-          }
+          {postItem && (
+            <Box borderBottom="1px solid rgba(128, 129, 145, 0.25)">
+              <PostItem post={postItem} />
+            </Box>
+          )}
+          <CommentInput postId={postItem._id} />
+          {postItem.comments && <CommentList postId={postItem._id} />}
         </Box>
       </VStack>
       {!smallerDevice && <AdditionalInfo />}

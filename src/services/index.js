@@ -2,14 +2,14 @@ import { signupUser } from "./authServices";
 import { loginUser } from "./authServices";
 import {
   getAllPosts,
-  getSinglePost,
+  getCurrentPost,
   addNewPost,
   likeOrDislikePost,
   bookmarkHandler,
   deletePost,
   editPost,
 } from "./postServices";
-import { addNewCommentToPost, getCommentsOfPost } from "./commentServices";
+import { addNewCommentToPost, getCommentsOfPost, deleteComment } from "./commentServices";
 
 export {
   signupUser,
@@ -20,7 +20,8 @@ export {
   bookmarkHandler,
   deletePost,
   editPost,
-  getSinglePost,
+  getCurrentPost,
   addNewCommentToPost,
-  getCommentsOfPost
+  getCommentsOfPost,
+  deleteComment
 };

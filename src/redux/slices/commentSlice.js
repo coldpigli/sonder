@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewCommentToPost, getCommentsOfPost } from "services";
+import { addNewCommentToPost, deleteComment, getCommentsOfPost } from "services";
 
 const initialState = {
   comments: [],
@@ -37,6 +37,21 @@ const commentSlice = createSlice({
     [addNewCommentToPost.rejected]: (state) => {
       state.postStatus = "failed";
     },
+
+    [deleteComment.pending]: (state) => {
+        state.postStatus = "loading";
+    },
+
+    [deleteComment.fulfilled]: (state, action) => {
+        const { comments } = action.payload;
+        state.comments = comments;
+        state.postStatus = "success";
+    },
+
+    [deleteComment.rejected]: (state) => {
+        state.postStatus = "failed";
+      },
+
   },
 });
 
