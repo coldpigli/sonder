@@ -9,6 +9,7 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import { MdOutlineIosShare, MdOutlineMoreVert } from "react-icons/md";
@@ -16,6 +17,7 @@ import { BiUpvote, BiCommentAdd, BiBookmark } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { bookmarkHandler, deletePost, likeOrDislikePost } from "services";
 import { checkIfBookmarked, checkUserPresence } from "utils";
+import { EditPostModal } from "components";
 
 const PostItem = ({ post }) => {
   const { username, content, comments, likes, _id } = post;
@@ -23,6 +25,7 @@ const PostItem = ({ post }) => {
   const { userData } = useSelector((state) => state.auth);
   const currentUser = userData.username;
   const dispatch = useDispatch();
+  const {isOpen, onOpen, onClose} = useDisclosure();
   const engageButtons = [
     {
       id: 1,
@@ -94,9 +97,11 @@ const PostItem = ({ post }) => {
                 <MenuItem
                   _hover={{ backgroundColor: "#242731", color: "white" }}
                   _focus={{ backgroundColor: "#242731", color: "white" }}
+                  onClick={onOpen}
                 >
                   Edit Post
                 </MenuItem>
+                <EditPostModal isOpen={isOpen} onClose={onClose} post={post}/>
                 <MenuItem
                   _hover={{ backgroundColor: "#242731", color: "white" }}
                   _focus={{ backgroundColor: "#242731", color: "white" }}

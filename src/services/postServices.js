@@ -47,6 +47,18 @@ async(postData, {getState, rejectWithValue})=>{
     }
 });
 
+const editPost = createAsyncThunk("post/editPost",
+async(postData, {getState, rejectWithValue})=>{
+    try{
+        const {authToken} = getState().auth;
+        const res = await axios.post(`/api/posts/edit/${postData._id}`, {postData}, {headers: {authorization: authToken}});
+        return res.data;
+    } catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+})
+
 const deletePost = createAsyncThunk("post/deletePost",
 async(postData, {getState, rejectWithValue})=>{
     try{
@@ -64,5 +76,6 @@ export {
     addNewPost,
     likeOrDislikePost,
     bookmarkHandler,
-    deletePost  
+    deletePost,
+    editPost
 }
