@@ -6,6 +6,7 @@ import Signup from "./Signup/Signup";
 import UserProfile from "./UserProfile/UserProfile";
 import Bookmarks from "./Bookmarks/Bookmarks";
 import Trending from "./Trending/Trending";
+import SinglePost from "./SinglePost/SinglePost";
 
 
 export{
@@ -16,5 +17,6 @@ export{
     Signup,
     UserProfile,
     Bookmarks,
-    Trending
+    Trending,
+    SinglePost
 }

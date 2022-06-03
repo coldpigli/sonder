@@ -1,7 +1,7 @@
 import { Mockman } from 'components'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Bookmarks, Feed, FindPeers, Landing, Login, Signup, Trending, UserProfile } from 'routes'
+import { Bookmarks, Feed, FindPeers, Landing, Login, Signup, SinglePost, Trending, UserProfile } from 'routes'
 import { PrivateRoutes } from './PrivateRoutes'
 
 const RoutingConfigs = () => {
@@ -10,6 +10,7 @@ const RoutingConfigs = () => {
         <Route index element={<Landing/>}/>
         <Route path="/" element={<PrivateRoutes/>}>
           <Route path="/feed" element={<Feed/>}/>
+          <Route path="/post/:id" element={<SinglePost/>}/>
           <Route path='/peers' element={<FindPeers/>}/>
           <Route path='/trending' element={<Trending/>}/>
           <Route path='/profile' element={<UserProfile/>}/>

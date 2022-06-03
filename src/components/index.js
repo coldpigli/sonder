@@ -13,6 +13,9 @@ import FindPeople from "./FindPeople/FindPeople";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import Mockman from "./Mockman/Mockman";
 import TopNav from "./TopNav/TopNav";
+import EditPostModal from "./EditPostModal/EditPostModal";
+import CommentList from "./CommentList/CommentList";
+import CommentInput from "./CommentInput/CommentInput";
 
 export{
     TopBar,
@@ -29,5 +32,8 @@ export{
     FindPeople,
     ProfileHeader,
     Mockman,
-    TopNav
+    TopNav,
+    EditPostModal,
+    CommentList,
+    CommentInput
 }

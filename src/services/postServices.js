@@ -11,6 +11,18 @@ async ()=>{
     }
 });
 
+const getCurrentPost = createAsyncThunk('posts/getSinglePost',
+async(postId, {rejectWithValue})=>{
+    try{
+        console.log('the postId being sent is', postId);
+        const res = await axios.get(`/api/posts/${postId}`);
+        return res.data;
+    }catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+})
+
 const addNewPost = createAsyncThunk("posts/addNewPost",
 async(postData, {getState, rejectWithValue})=>{
     try{
@@ -47,6 +59,18 @@ async(postData, {getState, rejectWithValue})=>{
     }
 });
 
+const editPost = createAsyncThunk("post/editPost",
+async(postData, {getState, rejectWithValue})=>{
+    try{
+        const {authToken} = getState().auth;
+        const res = await axios.post(`/api/posts/edit/${postData._id}`, {postData}, {headers: {authorization: authToken}});
+        return res.data;
+    } catch(err){
+        console.log(err);
+        return rejectWithValue(err);
+    }
+})
+
 const deletePost = createAsyncThunk("post/deletePost",
 async(postData, {getState, rejectWithValue})=>{
     try{
@@ -59,10 +83,13 @@ async(postData, {getState, rejectWithValue})=>{
     }
 })
 
+
 export {
     getAllPosts,
+    getCurrentPost,
     addNewPost,
     likeOrDislikePost,
     bookmarkHandler,
-    deletePost  
+    deletePost,
+    editPost,
 }
