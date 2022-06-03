@@ -1,6 +1,6 @@
 import { signupUser } from "./authServices";
 import { loginUser } from "./authServices";
-import { getAllPosts, addNewPost, likeOrDislikePost, bookmarkHandler } from "./postServices";
+import { getAllPosts, addNewPost, likeOrDislikePost, bookmarkHandler, deletePost } from "./postServices";
 
 export{
     signupUser,
@@ -8,5 +8,6 @@ export{
     getAllPosts,
     addNewPost,
     likeOrDislikePost,
-    bookmarkHandler
+    bookmarkHandler,
+    deletePost
 }

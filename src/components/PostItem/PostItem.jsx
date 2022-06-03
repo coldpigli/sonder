@@ -14,7 +14,7 @@ import {
 import { MdOutlineIosShare, MdOutlineMoreVert } from "react-icons/md";
 import { BiUpvote, BiCommentAdd, BiBookmark } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { bookmarkHandler, likeOrDislikePost } from "services";
+import { bookmarkHandler, deletePost, likeOrDislikePost } from "services";
 import { checkIfBookmarked, checkUserPresence } from "utils";
 
 const PostItem = ({ post }) => {
@@ -42,7 +42,7 @@ const PostItem = ({ post }) => {
       name: "Comment",
       stat: likeCount,
       clickHandler: () => {
-        console.log("hello") //to-do
+        console.log("hello"); //to-do
       },
     },
     {
@@ -51,9 +51,9 @@ const PostItem = ({ post }) => {
       name: "Bookmark",
       active: checkIfBookmarked(userData.bookmarks, post),
       clickHandler: () => {
-        checkIfBookmarked(userData.bookmarks, post)?
-        dispatch(bookmarkHandler({type: "remove-bookmark", _id: _id})):
-        dispatch(bookmarkHandler({type: "bookmark", _id: _id}));
+        checkIfBookmarked(userData.bookmarks, post)
+          ? dispatch(bookmarkHandler({ type: "remove-bookmark", _id: _id }))
+          : dispatch(bookmarkHandler({ type: "bookmark", _id: _id }));
       },
     },
     {
@@ -79,19 +79,34 @@ const PostItem = ({ post }) => {
               </Text>
             </VStack>
           </HStack>
-          <Menu>
-            <MenuButton
-              as={IconButton}
-              aria-label="Options"
-              icon={<MdOutlineMoreVert />}
-              variant="outline"
-              _focus={{ boxShadow: "none" }}
-            />
-            <MenuList>
-              <MenuItem>Edit Post</MenuItem>
-              <MenuItem>Delete Post</MenuItem>
-            </MenuList>
-          </Menu>
+          {post.username === currentUser ? (
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                aria-label="Options"
+                icon={<MdOutlineMoreVert />}
+                variant="outline"
+                _focus={{ boxShadow: "none" }}
+                _hover={{bg: "none"}}
+                _active={{bg: "none"}}
+              />
+              <MenuList bg="#21242D">
+                <MenuItem
+                  _hover={{ backgroundColor: "#242731", color: "white" }}
+                  _focus={{ backgroundColor: "#242731", color: "white" }}
+                >
+                  Edit Post
+                </MenuItem>
+                <MenuItem
+                  _hover={{ backgroundColor: "#242731", color: "white" }}
+                  _focus={{ backgroundColor: "#242731", color: "white" }}
+                  onClick={()=>dispatch(deletePost(post))}
+                >
+                  Delete Post
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          ) : null}
         </HStack>
         <Box>
           <Text fontSize="sm" color="#c5c5c5">
