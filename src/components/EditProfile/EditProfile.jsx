@@ -17,11 +17,13 @@ import {
 } from "@chakra-ui/react";
 import { validationMessages } from "constants";
 import { useFormik } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { editUser } from "services/userServices";
 import * as Yup from "yup";
 
 const EditProfile = ({ isOpen, onClose, btnRef }) => {
   const { userData } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const { firstName, lastName, profileImg, portfolioUrl, bio } = userData;
   const formik = useFormik({
     initialValues: {
@@ -35,9 +37,8 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
       lastName: Yup.string().required(validationMessages.userNameEmpty),
     }),
     onSubmit: (values, actions) => {
-      const { firstName, lastName, facebookUrl, instagramUrl, githubUrl, bio } =
-        values;
-      console.log(values);
+      const { firstName, lastName, portfolioUrl, bio } = values;   
+      dispatch(editUser({firstName, lastName, portfolioUrl, bio}))
       actions.resetForm();
     },
   });
@@ -52,7 +53,7 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
     >
       <DrawerOverlay />
       <DrawerContent bg="#21242D" color="white">
-        <Box as='form' onSubmit={formik.handleSubmit}>
+        <Box as="form" onSubmit={formik.handleSubmit}>
           <DrawerCloseButton />
           <DrawerHeader>Edit your profile</DrawerHeader>
 
@@ -114,7 +115,9 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="blue" type='submit'>Save</Button>
+            <Button colorScheme="blue" type="submit">
+              Save
+            </Button>
           </DrawerFooter>
         </Box>
       </DrawerContent>
