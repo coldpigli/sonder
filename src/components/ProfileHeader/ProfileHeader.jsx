@@ -9,22 +9,31 @@ import {
   Image,
   Link,
   Text,
+  useDisclosure,
   useMediaQuery,
   VStack,
+  Input,
 } from "@chakra-ui/react";
 
 import { BiArrowBack } from "react-icons/bi";
-import { RiInstagramLine, RiFacebookCircleFill, RiGithubFill } from "react-icons/ri";
+import {
+  RiInstagramLine,
+  RiFacebookCircleFill,
+  RiGithubFill,
+} from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { urls } from "constants";
 import { fallbackData } from "constants";
+import { useRef } from "react";
+import { EditProfile } from "components";
 
 const ProfileHeader = ({ user }) => {
   const navigate = useNavigate();
   const coverImg = user.coverImg ?? urls.coverImg;
   const userBio = user.bio ?? fallbackData.userBio;
+  const btnRef = useRef();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [smallerDevice] = useMediaQuery("(max-width: 900px)");
-  console.log('user', user)
 
   return (
     <Box borderRadius="1rem" bg="#242731">
@@ -43,7 +52,7 @@ const ProfileHeader = ({ user }) => {
           />
           <Text color="#808191">{"@" + user.username}</Text>
         </HStack>
-        <VStack align='center'>
+        <VStack align="center">
           <Box p="1rem" bg="#242731" borderRadius="1rem">
             <Image
               objectFit="cover"
@@ -52,28 +61,45 @@ const ProfileHeader = ({ user }) => {
               borderRadius="1rem"
             />
           </Box>
-          <VStack align='stretch' p="1rem" pos="relative" bottom={(smallerDevice)?"5rem":'7rem'} w='95%' spacing={6}>
+          <VStack
+            align="stretch"
+            p="1rem"
+            pos="relative"
+            bottom={smallerDevice ? "5rem" : "7rem"}
+            w="95%"
+            spacing={6}
+          >
             <HStack justify="space-between" align="flex-end">
               <Avatar
-                size={(smallerDevice)?"xl":'2xl'}
+                size={smallerDevice ? "xl" : "2xl"}
                 name={user.username}
-                src="https://bit.ly/sage-adebayo"
+                border="5px solid #242731"
+                src={user.profileImg}
               />
-              <Button variant="outline">Edit Profile</Button>
+              <Button variant="outline" ref={btnRef} onClick={onOpen}>
+                Edit Profile
+              </Button>
+              <EditProfile isOpen={isOpen} onClose={onClose} btnRef={btnRef} />
             </HStack>
-            <Box mt='1rem'>
-              <Heading size='md'>{user.firstName+' '+user.lastName}</Heading>
-            </Box>
+            <HStack mt="1rem" align="center">
+              <Heading size="md">
+                {user.firstName + " " + user.lastName}
+              </Heading>
+              <Text fontSize="md" color="#808191">
+                {"@" + user.username}
+              </Text>
+            </HStack>
             <Box color="#808191">
               <Text fontSize="md">{userBio}</Text>
             </Box>
-            <HStack position='absolute' bottom='-20%'>
+            <HStack position="absolute" bottom="-20%">
+              {user?.portfolioUrl && (
                 <HStack color="#808191">
-                <Link href='https://chakra-ui.com' isExternal><Icon as={RiInstagramLine} w={8} h={8}/></Link>
-                <Link href='https://chakra-ui.com' isExternal><Icon as={RiFacebookCircleFill} w={8} h={8}/></Link>
-                <Link href='https://chakra-ui.com' isExternal><Icon as={RiGithubFill} w={8} h={8}/></Link>
+                  <Text>Portfolio</Text>
+                  <Link color="#6C5DD3">{user?.portfolioUrl}</Link>
                 </HStack>
-            </HStack> 
+              )}
+            </HStack>
           </VStack>
         </VStack>
       </VStack>

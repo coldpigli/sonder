@@ -17,6 +17,7 @@ import EditPostModal from "./EditPostModal/EditPostModal";
 import CommentList from "./CommentList/CommentList";
 import CommentInput from "./CommentInput/CommentInput";
 import Bookmarks from "./Bookmarks/Bookmarks";
+import EditProfile from "./EditProfile/EditProfile";
 
 export{
     TopBar,
@@ -37,5 +38,6 @@ export{
     EditPostModal,
     CommentList,
     CommentInput,
-    Bookmarks
+    Bookmarks,
+    EditProfile
 }

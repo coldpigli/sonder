@@ -4,11 +4,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "services";
 
-const Feedlisting = () => {
+const Feedlisting = ({userOnly}) => {
 
   const {postList} = useSelector((state)=>state.posts);
   const {userData} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
+  const usersPosts = postList?.filter((post)=>post.username===userData.username);
+  const displayPosts = (userOnly)?usersPosts:postList;
   
   useEffect(()=>{
     dispatch(getAllPosts())
@@ -21,8 +23,8 @@ const Feedlisting = () => {
         <Text fontSize="sm">Showing Recent</Text>
       </HStack>
       <Stack align="stretch" spacing="6" borderRadius='1rem' direction='column-reverse'>
-        {
-          postList.map((post)=>{
+        { 
+          displayPosts.map((post)=>{
           return <PostItem post={post}/>})
         }
       </Stack>

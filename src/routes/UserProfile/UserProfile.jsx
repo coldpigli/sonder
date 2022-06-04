@@ -45,7 +45,7 @@ const UserProfile = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Feedlisting/>
+                <Feedlisting userOnly={userData.username}/>
               </TabPanel>
               <TabPanel>
                 <Bookmarks/>

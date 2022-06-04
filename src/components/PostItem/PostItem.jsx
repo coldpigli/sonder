@@ -78,7 +78,7 @@ const PostItem = ({ post }) => {
       <VStack align="stretch">
         <HStack justify="space-between">
           <HStack>
-            <Avatar size="md" name={username} />
+            <Avatar size="md" name={username}/>
             <VStack align="stretch" spacing="0">
               <Heading size="sm">{username}</Heading>
               <Text fontSize="xs" color="#808191">
