@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import {
   AdditionalInfo,
+  Bookmarks,
   CreatePost,
   Feedlisting,
   ProfileHeader,
@@ -47,7 +48,7 @@ const UserProfile = () => {
                 <Feedlisting/>
               </TabPanel>
               <TabPanel>
-                <Feedlisting/>
+                <Bookmarks/>
               </TabPanel>
             </TabPanels>
           </Tabs>

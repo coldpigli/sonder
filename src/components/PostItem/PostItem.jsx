@@ -22,7 +22,8 @@ import { useNavigate } from "react-router-dom";
 
 const PostItem = ({ post }) => {
   const { username, content, comments, likes, _id } = post;
-  const { likeCount, likedBy } = likes;
+  const likeCount = likes?.likeCount || 0;
+  const likedBy = likes?.likedBy || [];
   const { userData } = useSelector((state) => state.auth);
   const currentUser = userData.username;
   const dispatch = useDispatch();
