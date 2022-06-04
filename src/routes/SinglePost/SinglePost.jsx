@@ -18,7 +18,6 @@ import BottomNav from "components/BottomNav/BottomNav";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import { useEffect } from "react";
 
 const SinglePost = () => {
   const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px

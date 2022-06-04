@@ -10,6 +10,7 @@ const AdditionalInfo = () => {
         top='0'
         borderLeft="0.5px solid rgba(128, 129, 145, 0.25)"
         p='1rem'
+        color='white'
       >
         <VStack align='stretch' spacing="8" borderRadius='1rem' p='0 1rem'>
             <Heading alignSelf='center'>Basic Stats</Heading>
