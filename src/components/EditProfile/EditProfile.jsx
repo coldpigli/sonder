@@ -32,6 +32,7 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
       portfolioUrl: portfolioUrl ?? "",
       bio: bio ?? "",
     },
+    enableReinitialize: true,
     validationSchema: Yup.object({
       firstName: Yup.string().required(validationMessages.userNameEmpty),
       lastName: Yup.string().required(validationMessages.userNameEmpty),

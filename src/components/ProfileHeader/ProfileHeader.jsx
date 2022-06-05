@@ -4,7 +4,6 @@ import {
   Button,
   Heading,
   HStack,
-  Icon,
   IconButton,
   Image,
   Link,
@@ -12,28 +11,31 @@ import {
   useDisclosure,
   useMediaQuery,
   VStack,
-  Input,
+  Stat,
+  StatLabel,
+  StatNumber,
 } from "@chakra-ui/react";
 
 import { BiArrowBack } from "react-icons/bi";
-import {
-  RiInstagramLine,
-  RiFacebookCircleFill,
-  RiGithubFill,
-} from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { urls } from "constants";
 import { fallbackData } from "constants";
 import { useRef } from "react";
 import { EditProfile } from "components";
+import { useSelector } from "react-redux";
 
 const ProfileHeader = ({ user }) => {
   const navigate = useNavigate();
   const coverImg = user.coverImg ?? urls.coverImg;
-  const userBio = user.bio ?? fallbackData.userBio;
+  const userBio = user.bio || fallbackData.userBio;
   const btnRef = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [smallerDevice] = useMediaQuery("(max-width: 900px)");
+  const { postList } = useSelector((state) => state.posts);
+  const { userData } = useSelector((state) => state.auth);
+  const usersPosts = postList?.filter(
+    (post) => post.username === userData.username
+  );
 
   return (
     <Box borderRadius="1rem" bg="#242731">
@@ -44,7 +46,6 @@ const ProfileHeader = ({ user }) => {
         >
           <IconButton
             color="#808191"
-            aria-label="Search database"
             variant="unstyled"
             fontSize="1.5rem"
             icon={<BiArrowBack />}
@@ -67,7 +68,7 @@ const ProfileHeader = ({ user }) => {
             pos="relative"
             bottom={smallerDevice ? "5rem" : "7rem"}
             w="95%"
-            spacing={6}
+            spacing={4}
           >
             <HStack justify="space-between" align="flex-end">
               <Avatar
@@ -81,7 +82,7 @@ const ProfileHeader = ({ user }) => {
               </Button>
               <EditProfile isOpen={isOpen} onClose={onClose} btnRef={btnRef} />
             </HStack>
-            <HStack mt="1rem" align="center">
+            <HStack align="center">
               <Heading size="md">
                 {user.firstName + " " + user.lastName}
               </Heading>
@@ -91,14 +92,28 @@ const ProfileHeader = ({ user }) => {
             </HStack>
             <Box color="#808191">
               <Text fontSize="md">{userBio}</Text>
+              <HStack position="absolute" bottom="-10%">
+                {user?.portfolioUrl && (
+                  <HStack color="#808191">
+                    <Text>Portfolio</Text>
+                    <Link color="#6C5DD3">{user?.portfolioUrl}</Link>
+                  </HStack>
+                )}
+              </HStack>
             </Box>
-            <HStack position="absolute" bottom="-20%">
-              {user?.portfolioUrl && (
-                <HStack color="#808191">
-                  <Text>Portfolio</Text>
-                  <Link color="#6C5DD3">{user?.portfolioUrl}</Link>
-                </HStack>
-              )}
+            <HStack>
+              <Stat>
+                <StatLabel>Thoughts</StatLabel>
+                <StatNumber>{usersPosts?.length}</StatNumber>
+              </Stat>
+              <Stat>
+                <StatLabel>Followers</StatLabel>
+                <StatNumber>22</StatNumber>
+              </Stat>
+              <Stat>
+                <StatLabel>Following</StatLabel>
+                <StatNumber>45</StatNumber>
+              </Stat>
             </HStack>
           </VStack>
         </VStack>

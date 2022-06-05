@@ -23,7 +23,6 @@ import { useSelector } from "react-redux";
 const UserProfile = () => {
   const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
   const {userData} = useSelector((state)=>state.auth);
-  console.log("user data in profile", userData);
 
   return (
     <Box display="flex" gap="12" color="white">
