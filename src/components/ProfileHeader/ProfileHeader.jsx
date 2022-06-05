@@ -95,7 +95,7 @@ const ProfileHeader = ({ user }) => {
               <HStack position="absolute" bottom="-10%">
                 {user?.portfolioUrl && (
                   <HStack color="#808191">
-                    <Text>Portfolio</Text>
+                    <Text>Portfolio: </Text>
                     <Link color="#6C5DD3">{user?.portfolioUrl}</Link>
                   </HStack>
                 )}

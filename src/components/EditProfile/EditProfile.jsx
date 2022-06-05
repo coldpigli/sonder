@@ -14,17 +14,25 @@ import {
   VStack,
   Textarea,
   Box,
+  Avatar,
+  Icon,
+  AvatarBadge,
 } from "@chakra-ui/react";
 import { validationMessages } from "constants";
+import {BsFillCameraFill} from "react-icons/bs";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "services/userServices";
 import * as Yup from "yup";
+import { useState } from "react";
+import axios from "axios";
 
 const EditProfile = ({ isOpen, onClose, btnRef }) => {
   const { userData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { firstName, lastName, profileImg, portfolioUrl, bio } = userData;
+  const [imageUrl, setImageUrl] = useState(profileImg);
+  console.log(imageUrl);
   const formik = useFormik({
     initialValues: {
       firstName: firstName ?? "",
@@ -44,6 +52,29 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
     },
   });
 
+  const uploadImage = async (image) => {
+    if (Math.round(image.size / 1024000) > 2)
+			console.log("Image cannot exceed 2mb");
+      //the below code needs to be fixed later
+		// else {
+    //   console.log("the image is ", image);
+		// 	const data1 = new FormData();
+    //   console.log(image);
+		// 	data1.append("file", image);
+		// 	data1.append("upload_preset", process.env.REACT_APP_CLOUDINARY_API_KEY);
+    //   data1.append("cloud_name","coldpigli");
+    //   console.log("before try", data1);
+    //   try{
+    //     console.log('is this running ?')
+    //     console.log('data1', data1);
+    //     const res = await axios.post("https://api.cloudinary.com/v1_1/coldpigli/image/upload",data1);
+    //     console.log(res);
+    //   }catch(err){
+    //     console.log(err);
+    //   }
+		// }
+  }
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -60,6 +91,30 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
 
           <DrawerBody>
             <VStack align="stretch">
+            <FormControl>
+              <Avatar src={imageUrl} size='2xl' name={`${firstName} ${lastName}`}>
+                <AvatarBadge border="0">
+                <FormControl>
+											<FormLabel
+												cursor="pointer"
+												position="absolute"
+												right="0px"
+												bottom="0"
+											>
+												<Icon as={BsFillCameraFill} w='10' h='10'/>
+											</FormLabel>
+											<Input
+												type="file"
+												visibility="hidden"
+												accept="image/*"
+												onChange={(e) => uploadImage(e.target.files[0])}
+											/>
+										</FormControl> 
+                  
+                </AvatarBadge>
+              </Avatar>
+              </FormControl>
+
               <FormControl
                 isInvalid={formik.errors.firstName && formik.touched.firstName}
               >

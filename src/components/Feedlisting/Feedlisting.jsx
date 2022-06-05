@@ -16,6 +16,8 @@ const Feedlisting = ({userOnly}) => {
     dispatch(getAllPosts())
   },[])
 
+  console.log("PostList", postList);
+
   return (
     <Box mt='1rem'>
       <HStack justify="space-between" mb="1rem">

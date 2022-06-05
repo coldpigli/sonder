@@ -17,6 +17,7 @@ const addNewCommentToPost = createAsyncThunk("comment/addNewComment",
 async(commentMetaData, {getState, rejectWithValue})=>{
     try{
         const {postId, comment} = commentMetaData;
+        console.log("COmment being added", comment);
         const {authToken} = getState().auth;
         const res = await axios.post(`/api/comments/add/${postId}`, {commentData: comment}, {headers: {authorization: authToken}});
         return res.data
