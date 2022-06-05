@@ -1,41 +1,125 @@
-import { Box, Heading, HStack, Icon, IconButton, Image, Link, Text, VStack } from '@chakra-ui/react'
-import {RiEditBoxFill, RiExternalLinkLine, RiInstagramLine, RiFacebookCircleFill, RiGithubFill} from 'react-icons/ri'
+import {
+  Avatar,
+  Box,
+  Button,
+  Heading,
+  HStack,
+  IconButton,
+  Image,
+  Link,
+  Text,
+  useDisclosure,
+  useMediaQuery,
+  VStack,
+  Stat,
+  StatLabel,
+  StatNumber,
+} from "@chakra-ui/react";
 
+import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import { urls } from "constants";
+import { fallbackData } from "constants";
+import { useRef } from "react";
+import { EditProfile } from "components";
+import { useSelector } from "react-redux";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ user }) => {
+  const navigate = useNavigate();
+  const coverImg = user.coverImg ?? urls.coverImg;
+  const userBio = user.bio || fallbackData.userBio;
+  const btnRef = useRef();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [smallerDevice] = useMediaQuery("(max-width: 900px)");
+  const { postList } = useSelector((state) => state.posts);
+  const { userData } = useSelector((state) => state.auth);
+  const usersPosts = postList?.filter(
+    (post) => post.username === userData.username
+  );
+
   return (
-    <Box p='1rem' bg='#F8F8F8' borderRadius='1rem'>
-          <HStack alignItems='flex-start'>
-            <Box p='1rem' border="2px solid" borderRadius='1rem'>
-              <Image minW='150px' src='https://bit.ly/dan-abramov' alt='Dan Abramov' borderRadius='1rem' />
+    <Box borderRadius="1rem" bg="#242731">
+      <VStack align="stretch">
+        <HStack
+          borderBottom="1px solid rgba(128, 129, 145, 0.25)"
+          p="0.5rem 1rem"
+        >
+          <IconButton
+            color="#808191"
+            variant="unstyled"
+            fontSize="1.5rem"
+            icon={<BiArrowBack />}
+            onClick={() => navigate("/feed")}
+          />
+          <Text color="#808191">{"@" + user.username}</Text>
+        </HStack>
+        <VStack align="center">
+          <Box p="1rem" bg="#242731" borderRadius="1rem">
+            <Image
+              objectFit="cover"
+              src={coverImg}
+              alt="Dan Abramov"
+              borderRadius="1rem"
+            />
+          </Box>
+          <VStack
+            align="stretch"
+            p="1rem"
+            pos="relative"
+            bottom={smallerDevice ? "5rem" : "7rem"}
+            w="95%"
+            spacing={4}
+          >
+            <HStack justify="space-between" align="flex-end">
+              <Avatar
+                size={smallerDevice ? "xl" : "2xl"}
+                name={user.username}
+                border="5px solid #242731"
+                src={user.profileImg}
+              />
+              <Button variant="outline" ref={btnRef} onClick={onOpen}>
+                Edit Profile
+              </Button>
+              <EditProfile isOpen={isOpen} onClose={onClose} btnRef={btnRef} />
+            </HStack>
+            <HStack align="center">
+              <Heading size="md">
+                {user.firstName + " " + user.lastName}
+              </Heading>
+              <Text fontSize="md" color="#808191">
+                {"@" + user.username}
+              </Text>
+            </HStack>
+            <Box color="#808191">
+              <Text fontSize="md">{userBio}</Text>
+              <HStack position="absolute" bottom="-10%">
+                {user?.portfolioUrl && (
+                  <HStack color="#808191">
+                    <Text>Portfolio: </Text>
+                    <Link color="#6C5DD3">{user?.portfolioUrl}</Link>
+                  </HStack>
+                )}
+              </HStack>
             </Box>
-            <VStack align='stretch'>
-              <HStack justify='space-between'>
-                <Heading size='lg'>Dan Abramov</Heading>
-                <IconButton
-                    variant="ghost"
-                    colorScheme="black"
-                    fontSize="2 rem"
-                    icon={<RiEditBoxFill />}
-                    _focus={{
-                      outline: "none",
-                    }}
-                  />
-              </HStack>
-              <Text fontSize='sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem est aperiam accusantium inventore quas reiciendis? Mollitia quo vitae deserunt architecto!</Text>
-              <HStack>
-                <Link href='http://localhost:3000/profile' isExternal>Personal Website</Link>
-                <RiExternalLinkLine mx='2px' />
-              </HStack>
-              <HStack>
-                <Link href='https://chakra-ui.com' isExternal><Icon as={RiInstagramLine} w={8} h={8}/></Link>
-                <Link href='https://chakra-ui.com' isExternal><Icon as={RiFacebookCircleFill} w={8} h={8}/></Link>
-                <Link href='https://chakra-ui.com' isExternal><Icon as={RiGithubFill} w={8} h={8}/></Link>
-              </HStack> 
-            </VStack>
-          </HStack>
-        </Box>
-  )
-}
+            <HStack>
+              <Stat>
+                <StatLabel>Thoughts</StatLabel>
+                <StatNumber>{usersPosts?.length}</StatNumber>
+              </Stat>
+              <Stat>
+                <StatLabel>Followers</StatLabel>
+                <StatNumber>22</StatNumber>
+              </Stat>
+              <Stat>
+                <StatLabel>Following</StatLabel>
+                <StatNumber>45</StatNumber>
+              </Stat>
+            </HStack>
+          </VStack>
+        </VStack>
+      </VStack>
+    </Box>
+  );
+};
 
-export default ProfileHeader
+export default ProfileHeader;

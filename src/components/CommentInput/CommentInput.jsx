@@ -26,6 +26,7 @@ const CommentInput = ({postId}) => {
     }),
     onSubmit: (values, actions) => {
       const { reply } = values;
+      console.log('reply and postId', reply, postId);
       dispatch(addNewCommentToPost({postId: postId, comment: {text: reply}}));
       actions.resetForm();
     },

@@ -1,3 +1,4 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 import { addNewCommentToPost, deleteComment, getCommentsOfPost } from "services";
 
@@ -30,6 +31,7 @@ const commentSlice = createSlice({
 
     [addNewCommentToPost.fulfilled]: (state, action) => {
       const { comments } = action.payload;
+      console.log("comments reeived", comments);
       state.comments = comments;
       state.postStatus = "success";
     },

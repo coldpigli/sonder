@@ -22,7 +22,8 @@ import { useNavigate } from "react-router-dom";
 
 const PostItem = ({ post }) => {
   const { username, content, comments, likes, _id } = post;
-  const { likeCount, likedBy } = likes;
+  const likeCount = likes?.likeCount || 0;
+  const likedBy = likes?.likedBy || [];
   const { userData } = useSelector((state) => state.auth);
   const currentUser = userData.username;
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ const PostItem = ({ post }) => {
       <VStack align="stretch">
         <HStack justify="space-between">
           <HStack>
-            <Avatar size="md" name={username} />
+            <Avatar size="md" name={username}/>
             <VStack align="stretch" spacing="0">
               <Heading size="sm">{username}</Heading>
               <Text fontSize="xs" color="#808191">

@@ -28,6 +28,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-simple-typewriter": "^3.0.1",
+    "redux-devtools-extension": "^2.13.9",
     "typewriter-effect": "^2.18.2",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4",
