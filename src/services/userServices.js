@@ -3,11 +3,9 @@ import axios from "axios";
 
 const editUser = createAsyncThunk("user/editUser",
 async (userData, {getState,rejectWithValue})=>{
-    console.log("user data being sent", userData);
     try{
         const {authToken} = getState().auth;
         const res = await axios.post('/api/users/edit',{userData},{headers: {authorization: authToken}});
-        console.log('res.data',res.data);
         return res.data;
     }catch(err){
         console.log(err);
@@ -15,6 +13,27 @@ async (userData, {getState,rejectWithValue})=>{
     }
 });
 
+const getAllUsers = createAsyncThunk("users/getAllUsers",
+async ()=>{
+    try{
+        const res = await axios.get('api/users');
+        return res.data;
+    } catch(err){
+        console.log(err);
+    }
+});
+
+const getUser = async(userId) => {
+    try {
+        const res = await axios.get(`/api/users/${userId}`);
+        return res.data
+    } catch(err){
+        console.log(err);
+    }
+}
+
 export {
-    editUser
+    editUser,
+    getAllUsers,
+    getUser
 }

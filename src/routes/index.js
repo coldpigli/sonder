@@ -7,6 +7,7 @@ import UserProfile from "./UserProfile/UserProfile";
 import Bookmarks from "./Bookmarks/Bookmarks";
 import Trending from "./Trending/Trending";
 import SinglePost from "./SinglePost/SinglePost";
+import PeopleProfile from "./PeopleProfile/PeopleProfile";
 
 
 export{
@@ -18,5 +19,6 @@ export{
     UserProfile,
     Bookmarks,
     Trending,
-    SinglePost
+    SinglePost,
+    PeopleProfile
 }
