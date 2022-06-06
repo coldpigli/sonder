@@ -19,6 +19,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -33,6 +35,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -47,6 +51,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -61,6 +67,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
 
   {
@@ -76,6 +84,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -90,6 +100,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -104,6 +116,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -118,6 +132,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -132,6 +148,8 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
   {
     _id: uuid(),
@@ -146,5 +164,7 @@ export const users = [
     bookmarks: [], 
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [],
+    followers: []
   },
 ];

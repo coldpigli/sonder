@@ -18,12 +18,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookmarkHandler, deletePost, likeOrDislikePost } from "services";
 import { checkIfBookmarked, checkUserPresence } from "utils";
 import { EditPostModal } from "components";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PostItem = ({ post }) => {
-  const { username, content, comments, likes, _id } = post;
-  const likeCount = likes?.likeCount || 0;
-  const likedBy = likes?.likedBy || [];
+  const likeCount = post?.likes?.likeCount || 0;
+  const likedBy = post?.likes?.likedBy || [];
   const { userData } = useSelector((state) => state.auth);
   const currentUser = userData.username;
   const dispatch = useDispatch();
@@ -39,17 +38,17 @@ const PostItem = ({ post }) => {
       stat: likeCount,
       clickHandler: () => {
         checkUserPresence(likedBy, currentUser)
-          ? dispatch(likeOrDislikePost({ type: "dislike", _id: _id }))
-          : dispatch(likeOrDislikePost({ type: "like", _id: _id }));
+          ? dispatch(likeOrDislikePost({ type: "dislike", _id: post?._id }))
+          : dispatch(likeOrDislikePost({ type: "like", _id: post?._id }));
       },
     },
     {
       id: 2,
       icon: <BiCommentAdd />,
       name: "Comment",
-      stat: comments?.length || 0,
+      stat: post?.comments?.length || 0,
       clickHandler: () => {
-        navigate(`/post/${_id}`);
+        navigate(`/post/${post?._id}`);
       },
     },
     {
@@ -59,8 +58,8 @@ const PostItem = ({ post }) => {
       active: checkIfBookmarked(userData.bookmarks, post),
       clickHandler: () => {
         checkIfBookmarked(userData.bookmarks, post)
-          ? dispatch(bookmarkHandler({ type: "remove-bookmark", _id: _id }))
-          : dispatch(bookmarkHandler({ type: "bookmark", _id: _id }));
+          ? dispatch(bookmarkHandler({ type: "remove-bookmark", _id: post?._id }))
+          : dispatch(bookmarkHandler({ type: "bookmark", _id: post?._id }));
       },
     },
     {
@@ -77,16 +76,18 @@ const PostItem = ({ post }) => {
     <Box padding="1rem" borderRadius="1rem" bg="#242731">
       <VStack align="stretch">
         <HStack justify="space-between">
+          <Link to={`/people/${post?.username}`}>
           <HStack>
-            <Avatar size="md" name={username}/>
+            <Avatar size="md" name={post?.username}/>
             <VStack align="stretch" spacing="0">
-              <Heading size="sm">{username}</Heading>
+              <Heading size="sm">{post?.username}</Heading>
               <Text fontSize="xs" color="#808191">
                 31m ago
               </Text>
             </VStack>
           </HStack>
-          {post.username === currentUser ? (
+          </Link>
+          {post?.username === currentUser ? (
             <Menu>
               <MenuButton
                 as={IconButton}
@@ -119,7 +120,7 @@ const PostItem = ({ post }) => {
         </HStack>
         <Box>
           <Text fontSize="sm" color="#c5c5c5">
-            {content}
+            {post?.content}
           </Text>
         </Box>
         <HStack justify="space-between">

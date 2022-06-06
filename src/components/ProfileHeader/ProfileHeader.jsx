@@ -37,6 +37,10 @@ const ProfileHeader = ({ user }) => {
     (post) => post.username === userData.username
   );
 
+  const checkUserNative = (user) => {
+    return user.username === userData.username ? true : false;
+  };
+
   return (
     <Box borderRadius="1rem" bg="#242731">
       <VStack align="stretch">
@@ -77,10 +81,20 @@ const ProfileHeader = ({ user }) => {
                 border="5px solid #242731"
                 src={user.profileImg}
               />
-              <Button variant="outline" ref={btnRef} onClick={onOpen}>
-                Edit Profile
-              </Button>
-              <EditProfile isOpen={isOpen} onClose={onClose} btnRef={btnRef} />
+              {checkUserNative(user) ? (
+                <Box>
+                  <Button variant="outline" ref={btnRef} onClick={onOpen}>
+                    Edit Profile
+                  </Button>
+                  <EditProfile
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    btnRef={btnRef}
+                  />
+                </Box>
+              ) : (
+                <Button bg='#6C5DD3' color='white'>Follow</Button>
+              )}
             </HStack>
             <HStack align="center">
               <Heading size="md">

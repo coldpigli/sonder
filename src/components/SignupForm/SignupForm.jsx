@@ -18,16 +18,16 @@ const SignupForm = () => {
         username: "",
         email: "",
         password: "",
-        firstname: "",
-        lastname: ""
+        firstName: "",
+        lastName: ""
         },
         validationSchema: Yup.object({
           username: Yup.string()
             .required(validationMessages.userNameEmpty)
             .min(4, validationMessages.userNameShort),
-          firstname: Yup.string()
+          firstName: Yup.string()
             .required(validationMessages.userNameEmpty),
-          lastname: Yup.string()
+          lastName: Yup.string()
           .required(validationMessages.userNameEmpty),
           email: Yup.string()
             .email(validationMessages.emailFormat)
@@ -37,8 +37,8 @@ const SignupForm = () => {
             .min(8, validationMessages.passwordShort),
         }),
         onSubmit: (values, actions) => {
-          const {username, email, password, firstname, lastname} = values;
-          dispatch(signupUser({username, email, password, firstname, lastname}))
+          const {username, email, password, firstName, lastName} = values;
+          dispatch(signupUser({username, email, password, firstName, lastName}))
           actions.resetForm();
         },
       })
@@ -52,16 +52,16 @@ const SignupForm = () => {
   return (
     <VStack as="form" spacing="1rem" onSubmit={formik.handleSubmit} w={{base: "100%",md: "80%",xl: "80%"}}>
 
-      <FormControl isInvalid={formik.errors.firstname && formik.touched.firstname}>
+      <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
         <FormLabel htmlFor="firstname">First Name</FormLabel>
-        <Input id="firstname" type="text" {...formik.getFieldProps("firstname")} />
-        <FormErrorMessage>{formik.errors.firstname}</FormErrorMessage>
+        <Input id="firstname" type="text" {...formik.getFieldProps("firstName")} />
+        <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
       </FormControl>
 
-      <FormControl isInvalid={formik.errors.lastname && formik.touched.lastname}>
-        <FormLabel htmlFor="lastname">Last Name</FormLabel>
-        <Input id="lastname" type="text" {...formik.getFieldProps("lastname")} />
-        <FormErrorMessage>{formik.errors.lastname}</FormErrorMessage>
+      <FormControl isInvalid={formik.errors.lastName && formik.touched.lastName}>
+        <FormLabel htmlFor="lastName">Last Name</FormLabel>
+        <Input id="lastname" type="text" {...formik.getFieldProps("lastName")} />
+        <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
       </FormControl>
 
        <FormControl isInvalid={formik.errors.username && formik.touched.username}>

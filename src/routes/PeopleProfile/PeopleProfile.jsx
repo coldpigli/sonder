@@ -18,7 +18,7 @@ const PeopleProfile = () => {
     const dispatch = useDispatch();
 
     const getUserId = (username) => {
-        const user = userList.find((user)=>user.username===username);
+        const user = userList?.find((user)=>user.username===username);
         return user._id;
     }
 

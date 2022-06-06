@@ -7,11 +7,11 @@ import { getAllPosts } from "services";
 const Feedlisting = ({userOnly}) => {
 
   const {postList} = useSelector((state)=>state.posts);
-  const {userData} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
   const usersPosts = postList.filter((post)=>post.username===userOnly);
   const displayPosts = (userOnly)?usersPosts:postList;
-  
+  console.log({displayPosts});
+
   useEffect(()=>{
     if(postList.length===0)
     {
@@ -27,7 +27,7 @@ const Feedlisting = ({userOnly}) => {
       </HStack>
       <Stack align="stretch" spacing="6" borderRadius='1rem' direction='column-reverse'>
         { 
-          displayPosts.map((post)=>{
+          displayPosts?.map((post)=>{
           return <PostItem post={post}/>})
         }
       </Stack>
