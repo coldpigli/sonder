@@ -9,14 +9,15 @@ const Feedlisting = ({userOnly}) => {
   const {postList} = useSelector((state)=>state.posts);
   const {userData} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
-  const usersPosts = postList?.filter((post)=>post.username===userData.username);
+  const usersPosts = postList.filter((post)=>post.username===userOnly);
   const displayPosts = (userOnly)?usersPosts:postList;
   
   useEffect(()=>{
-    dispatch(getAllPosts())
+    if(postList.length===0)
+    {
+      dispatch(getAllPosts())
+    }
   },[])
-
-  console.log("PostList", postList);
 
   return (
     <Box mt='1rem'>
