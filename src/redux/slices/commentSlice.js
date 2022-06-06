@@ -4,7 +4,7 @@ import { addNewCommentToPost, deleteComment, getCommentsOfPost } from "services"
 
 const initialState = {
   comments: [],
-  authStatus: "idle",
+  commentStatus: "idle",
 };
 
 const commentSlice = createSlice({
@@ -12,46 +12,46 @@ const commentSlice = createSlice({
   initialState,
   extraReducers: {
     [getCommentsOfPost.pending]: (state) => {
-      state.postStatus = "loading";
+      state.commentStatus = "loading";
     },
 
     [getCommentsOfPost.fulfilled]: (state, action) => {
       const { comments } = action.payload;
       state.comments = comments;
-      state.postStatus = "success";
+      state.commentStatus = "success";
     },
 
     [getCommentsOfPost.rejected]: (state) => {
-      state.postStatus = "failed";
+      state.commentStatus = "failed";
     },
 
     [addNewCommentToPost.pending]: (state) => {
-      state.postStatus = "loading";
+      state.commentStatus = "loading";
     },
 
     [addNewCommentToPost.fulfilled]: (state, action) => {
       const { comments } = action.payload;
       console.log("comments reeived", comments);
       state.comments = comments;
-      state.postStatus = "success";
+      state.commentStatus = "success";
     },
 
     [addNewCommentToPost.rejected]: (state) => {
-      state.postStatus = "failed";
+      state.commentStatus = "failed";
     },
 
     [deleteComment.pending]: (state) => {
-        state.postStatus = "loading";
+        state.commentStatus = "loading";
     },
 
     [deleteComment.fulfilled]: (state, action) => {
         const { comments } = action.payload;
         state.comments = comments;
-        state.postStatus = "success";
+        state.commentStatus = "success";
     },
 
     [deleteComment.rejected]: (state) => {
-        state.postStatus = "failed";
+        state.commentStatus = "failed";
       },
 
   },

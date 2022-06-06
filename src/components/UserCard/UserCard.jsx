@@ -1,9 +1,13 @@
 import { Avatar, Box, Button, Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { handleFollowUnfollow } from "services";
 
 const UserCard = ({userData}) => {
 
-    const {firstName, lastName, profileImg, username} = userData;
+    const {firstName, lastName, profileImg, username, _id} = userData;
+    const {authToken} = useSelector((state)=>state.auth);
+    const dispatch = useDispatch();
 
   return (
     <Box p='0.5rem' bg='#242731' borderRadius='1rem'>
@@ -20,7 +24,7 @@ const UserCard = ({userData}) => {
             </HStack>
             </Link>
             <Box>
-                <Button bg='#6C5DD3' color='white' size='sm'>Follow</Button>
+                <Button bg='#6C5DD3' color='white' size='sm' onClick={()=>handleFollowUnfollow({type:"follow", followUserId: _id},authToken,dispatch)}>Follow</Button>
             </Box>
         </HStack>
     </Box>
