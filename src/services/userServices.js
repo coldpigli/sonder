@@ -1,7 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { updateUser } from "redux/slices/authSlice";
-import { updateUserList } from "redux/slices/userSlice";
 
 const editUser = createAsyncThunk("user/editUser",
 async (userData, {getState,rejectWithValue})=>{
@@ -15,7 +13,7 @@ async (userData, {getState,rejectWithValue})=>{
     }
 });
 
-const getAllUsers = createAsyncThunk("users/getAllUsers",
+const getAllUsers = createAsyncThunk("users/allUsers",
 async ()=>{
     try{
         const res = await axios.get('api/users');
@@ -34,24 +32,8 @@ const getUser = async(userId) => {
     }
 }
 
-
-const handleFollowUnfollow = async (userMetaData, authToken, dispatch)=>{
-    try{
-        const {type, followUserId} = userMetaData;
-        console.log('type',type, followUserId);
-        const res = await axios.post(`/api/users/${type}/${followUserId}`,{},{headers: {authorization: authToken}});
-        const {user, followUser} = res.data;
-        dispatch(updateUser(user));
-        dispatch(updateUserList({user,followUser}));
-    }catch(err){
-        console.log(err);
-    }
-}
-
-
 export {
     editUser,
     getAllUsers,
     getUser,
-    handleFollowUnfollow
 }
