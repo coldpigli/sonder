@@ -27,17 +27,17 @@ const PostItem = ({ post }) => {
   const likeCount = post?.likes?.likeCount || 0;
   const likedBy = post?.likes?.likedBy || [];
   const { userData } = useSelector((state) => state.auth);
-  const {userList} = useSelector((state)=>state.users);
+  const { userList } = useSelector((state) => state.users);
   const currentUser = userData.username;
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
   const findProfileImg = (name) => {
-      const user = userList.find((item)=>item.username===name);
-      return user?.profileImg
-  }
-  
+    const user = userList.find((item) => item.username === name);
+    return user?.profileImg;
+  };
+
   const engageButtons = [
     {
       id: 1,
@@ -83,7 +83,11 @@ const PostItem = ({ post }) => {
         <HStack justify="space-between">
           <Link to={`/people/${post?.username}`}>
             <HStack>
-              <Avatar size="md" name={post?.username} src={findProfileImg(post?.username)}/>
+              <Avatar
+                size="md"
+                name={post?.username}
+                src={findProfileImg(post?.username)}
+              />
               <VStack align="stretch" spacing="0">
                 <Heading size="sm">{post?.username}</Heading>
                 <Text fontSize="xs" color="#808191">

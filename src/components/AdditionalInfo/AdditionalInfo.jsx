@@ -2,6 +2,7 @@ import { Box, Heading, VStack } from "@chakra-ui/react";
 import { FindPeople, InfoBar } from "components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {SiCloudfoundry, SiSonarcloud, SiSnapcraft} from 'react-icons/si'
 
 const AdditionalInfo = () => {
   const { userData } = useSelector((state) => state.auth);
@@ -27,13 +28,13 @@ const AdditionalInfo = () => {
         <Heading alignSelf="center">Profile Stats</Heading>
         <VStack spacing="4" align="stretch">
           <Link to="/peers">
-            <InfoBar text="Following" metric={following?.length} />
+            <InfoBar text="Following" metric={following?.length} icon={SiCloudfoundry} bgColor="#6C5DD3"/>
           </Link>
           <Link to="/peers">
-            <InfoBar text="Followers" metric={followers?.length} />
+            <InfoBar text="Followers" metric={followers?.length} icon={SiSnapcraft} bgColor="#6C5DD3"/>
           </Link>
           <Link to='/profile'>
-          <InfoBar text="Thoughts" metric={getNumberOfUsersPost()} />
+          <InfoBar text="Thoughts" metric={getNumberOfUsersPost()} icon={SiSonarcloud} bgColor="#6C5DD3"/>
           </Link>
         </VStack>
         <FindPeople />

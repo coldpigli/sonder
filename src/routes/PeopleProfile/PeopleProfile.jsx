@@ -1,25 +1,24 @@
-import { Box, useMediaQuery, VStack } from '@chakra-ui/react';
-import { AdditionalInfo, ProfileHeader, Sidebar, TopBar } from 'components';
+import { Box, Heading, HStack, Stack, Text, useMediaQuery, VStack } from '@chakra-ui/react';
+import { AdditionalInfo, PostItem, ProfileHeader, Sidebar, TopBar } from 'components';
 import BottomNav from 'components/BottomNav/BottomNav';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getAllUsers, getUser } from 'services';
+import { getUser } from 'services';
 const PeopleProfile = () => {
 
     const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
-    const {userData} = useSelector((state)=>state.auth);
     const {userList} = useSelector((state)=>state.users);
+    const {postList} = useSelector((state)=>state.posts);
     const {username} = useParams();
-    console.log("user list", userList);
-    console.log("username", username)
     const [viewingUser, setViewingUser] = useState();
-    console.log("viewing user", viewingUser);
-    const dispatch = useDispatch();
-
     const getUserId = (username) => {
         const user = userList?.find((user)=>user.username===username);
         return user._id;
+    }
+
+    const getUsersPosts = (username) => {
+      return postList?.filter((item)=>item.username===username)
     }
 
     useEffect(()=>{
@@ -27,7 +26,7 @@ const PeopleProfile = () => {
             const {user} = await getUser(getUserId(username));
             setViewingUser(user);
         })()
-    },[username])
+    },[username,userList])
 
     return (
       <Box display="flex" gap="12" color="white">
@@ -44,7 +43,22 @@ const PeopleProfile = () => {
              viewingUser && <ProfileHeader user={viewingUser}/>
           }
           <Box>
-            User Data
+          <Box mt="1rem">
+            <HStack justify="space-between" mb="1rem">
+              <Heading size="md">Scroll</Heading>
+              <Text fontSize="sm">Showing {username}'s thoughts</Text>
+            </HStack>
+            <Stack
+              align="stretch"
+              spacing="6"
+              borderRadius="1rem"
+              direction="column-reverse"
+            >
+            {
+              getUsersPosts(username)?.map((post)=><PostItem post={post}/>)
+            }
+            </Stack>
+          </Box>
           </Box>
         </VStack>
         {!smallerDevice && <AdditionalInfo />}
