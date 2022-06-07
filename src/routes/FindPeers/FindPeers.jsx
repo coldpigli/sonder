@@ -12,8 +12,18 @@ const FindPeers = () => {
   const [smallerDevice] = useMediaQuery('(max-width: 900px)') // checking if the device is less than 900px
   const {greetingSubHeaderPeers, greetingDescriptionPeers} = fallbackData;
   const {userList} = useSelector((state)=>state.users);
+  const {userData} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
-  console.log("The user list", userList);
+
+  const filterForExplore = () => {
+    const exploreList = userList?.filter((item)=>{
+      const res = userData?.following?.find((user)=>item.username===user.username);
+      if(!res){
+        return item;
+      }
+    }) 
+    return exploreList
+  }
 
   useEffect(()=>{
     dispatch(getAllUsers());
@@ -35,17 +45,29 @@ const FindPeers = () => {
               <TabPanel>
                 <SimpleGrid columns={[1, 2, 2]} spacing='40px'>
                   {
-                    userList?.map((user)=>{
-                      return <UserCard userData={user}/>
+                    userData?.following?.map((user)=>{
+                      return <UserCard currUserData={user}/>
                     })
                   }
                 </SimpleGrid>
               </TabPanel>
               <TabPanel>
-                Followers
+              <SimpleGrid columns={[1, 2, 2]} spacing='40px'>
+                {
+                    userData?.followers?.map((user)=>{
+                      return <UserCard currUserData={user}/>
+                    })
+                }
+              </SimpleGrid>
               </TabPanel>
               <TabPanel>
-                Explore
+              <SimpleGrid columns={[1, 2, 2]} spacing='40px'>
+                {
+                  filterForExplore()?.map((user)=>{
+                    return <UserCard currUserData={user}/>
+                  })
+                }
+              </SimpleGrid>
               </TabPanel>
             </TabPanels>
           </Tabs>

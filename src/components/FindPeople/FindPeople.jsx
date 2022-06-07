@@ -1,48 +1,54 @@
-import {Heading, HStack, Image, Text, VStack } from '@chakra-ui/react'
+import { Box, Heading, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const FindPeople = () => {
-  return (
-    <VStack  p='1rem' borderRadius='1rem' shadow='md' align='stretch'>
-        <HStack justify='space-between'>
-            <Heading size='sm'>
-                Explore
-            </Heading>
-            <Text fontSize="sm">See all</Text>
-        </HStack>
-        <HStack spacing='8' over>
-            <VStack>
-            <Image
-                boxSize='80px'
-                borderRadius='md'
-                objectFit='cover'
-                src='https://bit.ly/dan-abramov'
-                alt='Dan Abramov'
-            />
-            <Text fontSize="xs">Dan Abramov</Text>
-            </VStack>
-            <VStack>
-            <Image
-                boxSize='80px'
-                borderRadius='md'
-                objectFit='cover'
-                src='https://bit.ly/dan-abramov'
-                alt='Dan Abramov'
-            />
-            <Text fontSize="xs">Dan Abramov</Text>
-            </VStack>
-            <VStack>
-            <Image
-                boxSize='80px'
-                borderRadius='md'
-                objectFit='cover'
-                src='https://bit.ly/dan-abramov'
-                alt='Dan Abramov'
-            />
-            <Text fontSize="xs">Dan Abramov</Text>
-            </VStack>
-        </HStack>
-    </VStack>
-  )
-}
+  const { userList } = useSelector((state) => state.users);
+  const { userData } = useSelector((state) => state.auth);
 
-export default FindPeople
+  const filterForExplore = () => {
+    const exploreList = userList?.filter((item) => {
+      const res = userData?.following?.find(
+        (user) => item.username === user.username
+      );
+      if (!res) {
+        return item;
+      }
+    });
+    return exploreList.filter((item)=>item.username!==userData.username)
+  };
+
+  return (
+    <VStack p="1rem" borderRadius="1rem" shadow="md" align="stretch">
+      <HStack justify="space-between">
+        <Heading size="sm">Explore</Heading>
+        <Link to="/peers">
+          <Text fontSize="sm">See all</Text>
+        </Link>
+      </HStack>
+      <HStack spacing="8" over>
+        {filterForExplore()
+          ?.slice(0, 3)
+          .map((item) => {
+            return (
+              <Box>
+                <VStack>
+                  <Image
+                    boxSize="80px"
+                    borderRadius="md"
+                    objectFit="cover"
+                    src={item.profileImg}
+                    alt={item.username}
+                  />
+                  <Text fontSize="xs">{item.username}</Text>
+                </VStack>
+                <VStack></VStack>
+              </Box>
+            );
+          })}
+      </HStack>
+    </VStack>
+  );
+};
+
+export default FindPeople;

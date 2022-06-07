@@ -11,7 +11,7 @@ import {
 } from "./postServices";
 import { addNewCommentToPost, getCommentsOfPost, deleteComment } from "./commentServices";
 import { getAllUsers, getUser } from "./userServices";
-import { handleFollowUnfollow } from "./testServices";
+import { handleFollowUnfollow } from "./followUnfollowServices";
 
 export {
   signupUser,
