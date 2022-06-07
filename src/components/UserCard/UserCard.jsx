@@ -5,7 +5,8 @@ import { handleFollowUnfollow } from "services";
 
 const UserCard = ({currUserData}) => {
 
-    const {firstName, lastName, profileImg, username, _id} = currUserData;
+    const {firstName, lastName, profileImg, username} = currUserData;
+    const {userList} = useSelector((state)=>state.users);
     const {authToken, userData} = useSelector((state)=>state.auth);
     const dispatch = useDispatch();
 
@@ -14,10 +15,15 @@ const UserCard = ({currUserData}) => {
        return userData?.following.find((item)=>item.username===currUserData.username)
     }
 
+    const findUserId = () => {
+        const foundUser = userList.find((item)=>item.username===username);
+        return foundUser._id
+    }
+
     const followUnfollow = () => {
         checkIfAlreadyFollowed()?
-        handleFollowUnfollow({type:"unfollow", followUserId: _id},authToken,dispatch):
-        handleFollowUnfollow({type:"follow", followUserId: _id},authToken,dispatch)
+        handleFollowUnfollow({type:"unfollow", followUserId: findUserId()},authToken,dispatch):
+        handleFollowUnfollow({type:"follow", followUserId: findUserId()},authToken,dispatch)
     }
     
   return (

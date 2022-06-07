@@ -24,13 +24,11 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "services/userServices";
 import * as Yup from "yup";
-import { useState } from "react";
 
 const EditProfile = ({ isOpen, onClose, btnRef }) => {
   const { userData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { firstName, lastName, profileImg, portfolioUrl, bio } = userData;
-  console.log({userData})
 
   const formik = useFormik({
     initialValues: {
