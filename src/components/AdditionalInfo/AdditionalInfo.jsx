@@ -24,7 +24,7 @@ const AdditionalInfo = () => {
       color="white"
     >
       <VStack align="stretch" spacing="8" borderRadius="1rem" p="0 1rem">
-        <Heading alignSelf="center">Basic Stats</Heading>
+        <Heading alignSelf="center">Profile Stats</Heading>
         <VStack spacing="4" align="stretch">
           <Link to="/peers">
             <InfoBar text="Following" metric={following?.length} />

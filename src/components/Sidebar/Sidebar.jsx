@@ -1,7 +1,9 @@
 import { Box, Flex, Heading, Icon, VStack } from "@chakra-ui/react";
 import { sidenavData } from "constants";
 import { MdOutlineLogout } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "redux/slices/authSlice";
 
 const Sidebar = () => {
 
@@ -10,6 +12,16 @@ const Sidebar = () => {
     borderRadius: "1rem",
     color: "#FFFFFF",
   };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userData");
+    dispatch(logout());
+    navigate("/login", {replace: true})
+  }
+
 
   return (
     <Box
@@ -47,7 +59,7 @@ const Sidebar = () => {
           })}
         </Flex>
         <Box>
-          <Icon as={MdOutlineLogout} color="#808191" w={8} h={8} />
+          <Icon as={MdOutlineLogout} color="#808191" w={8} h={8} onClick={handleLogout} cursor='pointer'/>
         </Box>
       </VStack>
     </Box>
