@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import { bookmarkHandler, loginUser, signupUser } from "services";
+import { bookmarkHandler, loginUser, signupUser} from "services";
 import { editUser } from "services/userServices";
 
 const initialState = {
@@ -18,6 +18,10 @@ const authSlice = createSlice({
             localStorage.removeItem("authToken");
             localStorage.removeItem("userToken");
         },   
+        updateUser: (state, action) => {
+            console.log("updating user with",action.payload)
+            state.userData = action.payload
+        }
     },
     extraReducers: {
         [signupUser.pending]: (state) => {
@@ -46,13 +50,13 @@ const authSlice = createSlice({
             state.authStatus = 'failed'
         },
         [bookmarkHandler.pending]: (state) => {
-            state.postStatus = "loading"
+            state.authStatus = "loading"
         },
         [bookmarkHandler.fulfilled]: (state, action) => {
             state.userData.bookmarks = action.payload.bookmarks
         },
         [bookmarkHandler.rejected]: (state) => {
-            state.postStatus = "failed"
+            state.authStatus = "failed"
         },
         [editUser.pending]: (state) => {
             state.authStatus = 'loading'
@@ -65,9 +69,9 @@ const authSlice = createSlice({
         },
         [editUser.rejected]: (state) => {
             state.authStatus = "failed"
-        }
+        },
     }
 })
 
-export const {logout} = authSlice.actions;
+export const {logout, updateUser} = authSlice.actions;
 export const authReducer = authSlice.reducer;

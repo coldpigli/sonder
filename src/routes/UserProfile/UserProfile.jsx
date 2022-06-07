@@ -18,11 +18,14 @@ import {
   TopBar,
 } from "components";
 import BottomNav from "components/BottomNav/BottomNav";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const UserProfile = () => {
   const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
   const {userData} = useSelector((state)=>state.auth);
+
+  useEffect(()=>{},[userData]);
 
   return (
     <Box display="flex" gap="12" color="white">

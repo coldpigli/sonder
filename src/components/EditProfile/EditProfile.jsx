@@ -25,14 +25,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "services/userServices";
 import * as Yup from "yup";
 import { useState } from "react";
-import axios from "axios";
 
 const EditProfile = ({ isOpen, onClose, btnRef }) => {
   const { userData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { firstName, lastName, profileImg, portfolioUrl, bio } = userData;
-  const [imageUrl, setImageUrl] = useState(profileImg);
-  console.log(imageUrl);
+  console.log({userData})
+
   const formik = useFormik({
     initialValues: {
       firstName: firstName ?? "",
@@ -55,24 +54,26 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
   const uploadImage = async (image) => {
     if (Math.round(image.size / 1024000) > 2)
 			console.log("Image cannot exceed 2mb");
-      //the below code needs to be fixed later
-		// else {
-    //   console.log("the image is ", image);
-		// 	const data1 = new FormData();
-    //   console.log(image);
-		// 	data1.append("file", image);
-		// 	data1.append("upload_preset", process.env.REACT_APP_CLOUDINARY_API_KEY);
-    //   data1.append("cloud_name","coldpigli");
-    //   console.log("before try", data1);
-    //   try{
-    //     console.log('is this running ?')
-    //     console.log('data1', data1);
-    //     const res = await axios.post("https://api.cloudinary.com/v1_1/coldpigli/image/upload",data1);
-    //     console.log(res);
-    //   }catch(err){
-    //     console.log(err);
-    //   }
-		// }
+		else {
+      const data = new FormData();
+			data.append("file", image);
+			data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_API_KEY);
+			const requestOptions = {
+				method: "POST",
+				body: data,
+			};
+			await fetch(
+				"https://api.cloudinary.com/v1_1/coldpigli/image/upload",
+				requestOptions
+			)
+				.then((response) => response.json())
+				.then((json) => {
+          dispatch(editUser({profileImg: json.url}));
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		}
   }
 
   return (
@@ -92,7 +93,7 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
           <DrawerBody>
             <VStack align="stretch">
             <FormControl>
-              <Avatar src={imageUrl} size='2xl' name={`${firstName} ${lastName}`}>
+              <Avatar src={profileImg} size='2xl' name={`${firstName} ${lastName}`}>
                 <AvatarBadge border="0">
                 <FormControl>
 											<FormLabel

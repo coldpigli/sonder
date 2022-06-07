@@ -1,8 +1,7 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import { urls } from "constants";
 import { useSelector } from "react-redux";
 
-const GreetingHeader = () => {
+const GreetingHeader = ({greetingSubHeader, greetingDescription, greetingImg}) => {
   const { userData } = useSelector((state) => state.auth);
 
   return (
@@ -16,14 +15,13 @@ const GreetingHeader = () => {
     >
       <VStack align="stretch">
         <Text fontSize="1.5rem">{`Hi ${userData.firstName},`}</Text>
-        <Text>How are you feeling today?</Text>
+        <Text>{greetingSubHeader}</Text>
         <Text color="#808191">
-          It takes courage to share how you feel, so be mindful about how you
-          interact with others.
+          {greetingDescription}
         </Text>
       </VStack>
       <Box maxW="200px">
-        <Image src={urls.helloBoy} alt="Hello" />
+        <Image src={greetingImg} alt="Hello" />
       </Box>
     </Flex>
   );

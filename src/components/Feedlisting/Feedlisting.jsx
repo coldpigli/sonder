@@ -7,16 +7,17 @@ import { getAllPosts } from "services";
 const Feedlisting = ({userOnly}) => {
 
   const {postList} = useSelector((state)=>state.posts);
-  const {userData} = useSelector((state)=>state.auth);
   const dispatch = useDispatch();
-  const usersPosts = postList?.filter((post)=>post.username===userData.username);
+  const usersPosts = postList.filter((post)=>post.username===userOnly);
   const displayPosts = (userOnly)?usersPosts:postList;
-  
-  useEffect(()=>{
-    dispatch(getAllPosts())
-  },[])
+  console.log({displayPosts});
 
-  console.log("PostList", postList);
+  useEffect(()=>{
+    if(postList.length===0)
+    {
+      dispatch(getAllPosts())
+    }
+  },[])
 
   return (
     <Box mt='1rem'>
@@ -26,7 +27,7 @@ const Feedlisting = ({userOnly}) => {
       </HStack>
       <Stack align="stretch" spacing="6" borderRadius='1rem' direction='column-reverse'>
         { 
-          displayPosts.map((post)=>{
+          displayPosts?.map((post)=>{
           return <PostItem post={post}/>})
         }
       </Stack>

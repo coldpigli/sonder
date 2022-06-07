@@ -4,9 +4,10 @@ import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
 import Signup from "./Signup/Signup";
 import UserProfile from "./UserProfile/UserProfile";
-import Bookmarks from "./Bookmarks/Bookmarks";
+import BookmarksPage from "./BookmarksPage/BookmarksPage";
 import Trending from "./Trending/Trending";
 import SinglePost from "./SinglePost/SinglePost";
+import PeopleProfile from "./PeopleProfile/PeopleProfile";
 
 
 export{
@@ -16,7 +17,8 @@ export{
     Login,
     Signup,
     UserProfile,
-    Bookmarks,
+    BookmarksPage,
     Trending,
-    SinglePost
+    SinglePost,
+    PeopleProfile
 }

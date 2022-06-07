@@ -10,6 +10,8 @@ import {
   editPost,
 } from "./postServices";
 import { addNewCommentToPost, getCommentsOfPost, deleteComment } from "./commentServices";
+import { getAllUsers, getUser } from "./userServices";
+import { handleFollowUnfollow } from "./followUnfollowServices";
 
 export {
   signupUser,
@@ -23,5 +25,8 @@ export {
   getCurrentPost,
   addNewCommentToPost,
   getCommentsOfPost,
-  deleteComment
+  deleteComment,
+  getAllUsers,
+  getUser,
+  handleFollowUnfollow
 };

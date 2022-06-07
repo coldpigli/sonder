@@ -18,6 +18,7 @@ import CommentList from "./CommentList/CommentList";
 import CommentInput from "./CommentInput/CommentInput";
 import Bookmarks from "./Bookmarks/Bookmarks";
 import EditProfile from "./EditProfile/EditProfile";
+import UserCard from "./UserCard/UserCard";
 
 export{
     TopBar,
@@ -39,5 +40,6 @@ export{
     CommentList,
     CommentInput,
     Bookmarks,
-    EditProfile
+    EditProfile,
+    UserCard
 }

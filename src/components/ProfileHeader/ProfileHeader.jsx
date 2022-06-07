@@ -22,7 +22,8 @@ import { urls } from "constants";
 import { fallbackData } from "constants";
 import { useRef } from "react";
 import { EditProfile } from "components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { handleFollowUnfollow } from "services";
 
 const ProfileHeader = ({ user }) => {
   const navigate = useNavigate();
@@ -32,10 +33,25 @@ const ProfileHeader = ({ user }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [smallerDevice] = useMediaQuery("(max-width: 900px)");
   const { postList } = useSelector((state) => state.posts);
-  const { userData } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const { userData, authToken } = useSelector((state) => state.auth);
   const usersPosts = postList?.filter(
-    (post) => post.username === userData.username
+    (post) => post.username === user.username
   );
+
+  const checkUserNative = (user) => {
+    return user.username === userData.username ? true : false;
+  };
+
+  const checkIfAlreadyFollowing = () => {
+    return userData?.following?.find((item)=>item.username===user.username);
+  }
+
+  const followUnfollow = () => {
+    checkIfAlreadyFollowing()?
+    handleFollowUnfollow({type:"unfollow", followUserId: user._id},authToken,dispatch):
+    handleFollowUnfollow({type:"follow", followUserId: user._id},authToken,dispatch)
+  }
 
   return (
     <Box borderRadius="1rem" bg="#242731">
@@ -77,10 +93,24 @@ const ProfileHeader = ({ user }) => {
                 border="5px solid #242731"
                 src={user.profileImg}
               />
-              <Button variant="outline" ref={btnRef} onClick={onOpen}>
-                Edit Profile
-              </Button>
-              <EditProfile isOpen={isOpen} onClose={onClose} btnRef={btnRef} />
+              {checkUserNative(user) ? (
+                <Box>
+                  <Button variant="outline" ref={btnRef} onClick={onOpen}>
+                    Edit Profile
+                  </Button>
+                  <EditProfile
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    btnRef={btnRef}
+                  />
+                </Box>
+              ) : (
+                <Button bg='#6C5DD3' color='white' onClick={followUnfollow}>
+                    {
+                        checkIfAlreadyFollowing()?"Unfollow":"Follow"
+                    }
+                </Button>
+              )}
             </HStack>
             <HStack align="center">
               <Heading size="md">
@@ -108,11 +138,11 @@ const ProfileHeader = ({ user }) => {
               </Stat>
               <Stat>
                 <StatLabel>Followers</StatLabel>
-                <StatNumber>22</StatNumber>
+                <StatNumber>{user?.followers?.length}</StatNumber>
               </Stat>
               <Stat>
                 <StatLabel>Following</StatLabel>
-                <StatNumber>45</StatNumber>
+                <StatNumber>{user?.following?.length}</StatNumber>
               </Stat>
             </HStack>
           </VStack>

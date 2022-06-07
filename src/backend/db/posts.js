@@ -16,13 +16,13 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
+    username: "arushii97",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "coldpigli",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -31,8 +31,8 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
-        text: "Wow!",
+        username: "tahirahmed",
+        text: "It's my time to sleep!",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -49,12 +49,11 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
-
+    username: "aaish",
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "kritu",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -63,8 +62,65 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        username: "nicenisha",
         text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Hi, I'm Aaish and I'm new here. A little bit about me. You may see me as a single person but I am 4. Confusing right? Well no. I am the queen of cohorts. It's simple, I see a cohort, I join.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "aaish",
+    comments: [
+      {
+        _id: uuid(),
+        username: "kritu",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "coldpigli",
+        text: "I can vouch for this.",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Hi, I'm kritu and I'm the boss here. A little bit about me: I am the calmest person you can find. I speak less, and work more unlike the developer of this app. I eat bugs for breakfast, make customHooks for lunch and party by the night. I've got two faces, smoky's the one I'm not.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "kritu",
+    comments: [
+      {
+        _id: uuid(),
+        username: "kritu",
+        text: "Interesting, I don't remember making this post",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
