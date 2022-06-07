@@ -1,17 +1,30 @@
-import { Box, Heading, HStack, Stack, Text, useMediaQuery, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  HStack,
+  Stack,
+  Text,
+  useMediaQuery,
+  VStack,
+} from "@chakra-ui/react";
 import {
   AdditionalInfo,
-  CreatePost,
-  Feedlisting,
   GreetingHeader,
+  PostItem,
   Sidebar,
   TopBar,
 } from "components";
 import BottomNav from "components/BottomNav/BottomNav";
+import { urls } from "constants";
 import { fallbackData } from "constants";
+import { useSelector } from "react-redux";
 
 const Trending = () => {
-  const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
+  const [smallerDevice] = useMediaQuery("(max-width: 900px)");
+  const { postList } = useSelector((state) => state.posts);
+  const sortedPostList = [...postList].sort(
+    (a, b) => a?.likes?.likeCount - b?.likes?.likeCount
+  );
 
   return (
     <Box display="flex" gap="12" color="white">
@@ -24,7 +37,11 @@ const Trending = () => {
         p={`${smallerDevice ? "1rem" : "1rem 0"}`}
       >
         <TopBar />
-        <GreetingHeader greetingSubHeader = {fallbackData.greetingSubHeaderTrending}/>
+        <GreetingHeader
+          greetingSubHeader={fallbackData.greetingSubHeaderTrending}
+          greetingDescription={fallbackData.greetingDescriptionTrending}
+          greetingImg={urls.trendingImg}
+        />
         <Box>
           <Box mt="1rem">
             <HStack justify="space-between" mb="1rem">
@@ -37,7 +54,9 @@ const Trending = () => {
               borderRadius="1rem"
               direction="column-reverse"
             >
-              
+              {sortedPostList?.map((post) => {
+                return <PostItem post={post} />;
+              })}
             </Stack>
           </Box>
         </Box>

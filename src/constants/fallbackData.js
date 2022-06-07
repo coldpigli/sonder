@@ -5,5 +5,7 @@ export const fallbackData = {
     greetingSubHeaderPeers: "It's a good day to make new friends",
     greetingDescriptionPeers: "You can revisit your existing peers here, or even better find new people to connect to. Voice your thoughts out in the wild, you'll definitely hear an echo back.",
     greetingSubHeaderTrending: "Here are your trending post",
-    greetingDescriptionTrending: "Here are the posts that are gaining traction." 
+    greetingDescriptionTrending: "Here are the posts that are gaining traction.",
+    greetingSubHeaderBookmarked: "Here are your Bookmarked post",
+    greetingDescriptionBookmarked: "Here are the posts that were bookmarked by you." 
 }

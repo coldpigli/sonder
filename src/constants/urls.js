@@ -8,6 +8,10 @@ export const urls = {
 
     coverImg: "https://ik.imagekit.io/avavya/Sonder/demo_cover_img_LEswgSBFR.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654347696051",
 
-    panda: "https://ik.imagekit.io/avavya/Sonder/undraw_walk_dreaming_u-58-a_NOpujwAry.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1653912553586"
+    panda: "https://ik.imagekit.io/avavya/Sonder/undraw_walk_dreaming_u-58-a_NOpujwAry.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1653912553586",
+
+    trendingImg: "https://ik.imagekit.io/avavya/Sonder/trending-page_kFOvKNSP6.png?ik-sdk-version=javascript-1.4.3&updatedAt=1654612519244",
+
+    bookmarkImg: "https://ik.imagekit.io/avavya/Sonder/bookmark-illustration_uhHyWnW0P?ik-sdk-version=javascript-1.4.3&updatedAt=1654613423147"
     
 }
