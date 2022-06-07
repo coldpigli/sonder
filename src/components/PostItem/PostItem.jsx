@@ -13,11 +13,14 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { MdOutlineIosShare, MdOutlineMoreVert } from "react-icons/md";
-import { BiUpvote, BiCommentAdd, BiBookmark } from "react-icons/bi";
+import { BiCommentAdd } from "react-icons/bi";
+import { AiOutlineFire, AiFillFire } from "react-icons/ai";
+import { MdOutlineBookmarkBorder, MdOutlineBookmark } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { bookmarkHandler, deletePost, likeOrDislikePost } from "services";
 import { checkIfBookmarked, checkUserPresence } from "utils";
 import { EditPostModal } from "components";
+import { WhatsappShareButton, WhatsappIcon } from "react-share";
 import { Link, useNavigate } from "react-router-dom";
 
 const PostItem = ({ post }) => {
@@ -26,13 +29,14 @@ const PostItem = ({ post }) => {
   const { userData } = useSelector((state) => state.auth);
   const currentUser = userData.username;
   const dispatch = useDispatch();
-  const {isOpen, onOpen, onClose} = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
   const engageButtons = [
     {
       id: 1,
-      icon: <BiUpvote />,
+      icon: <AiOutlineFire />,
+      activeIcon: <AiFillFire />,
       name: "Upvote",
       active: checkUserPresence(likedBy, currentUser),
       stat: likeCount,
@@ -53,21 +57,16 @@ const PostItem = ({ post }) => {
     },
     {
       id: 3,
-      icon: <BiBookmark />,
+      icon: <MdOutlineBookmarkBorder />,
+      activeIcon: <MdOutlineBookmark />,
       name: "Bookmark",
       active: checkIfBookmarked(userData.bookmarks, post),
       clickHandler: () => {
         checkIfBookmarked(userData.bookmarks, post)
-          ? dispatch(bookmarkHandler({ type: "remove-bookmark", _id: post?._id }))
+          ? dispatch(
+              bookmarkHandler({ type: "remove-bookmark", _id: post?._id })
+            )
           : dispatch(bookmarkHandler({ type: "bookmark", _id: post?._id }));
-      },
-    },
-    {
-      id: 4,
-      icon: <MdOutlineIosShare />,
-      name: "Share",
-      clickHandler: () => {
-        console.log("From Share"); //to-do
       },
     },
   ];
@@ -77,15 +76,15 @@ const PostItem = ({ post }) => {
       <VStack align="stretch">
         <HStack justify="space-between">
           <Link to={`/people/${post?.username}`}>
-          <HStack>
-            <Avatar size="md" name={post?.username}/>
-            <VStack align="stretch" spacing="0">
-              <Heading size="sm">{post?.username}</Heading>
-              <Text fontSize="xs" color="#808191">
-                31m ago
-              </Text>
-            </VStack>
-          </HStack>
+            <HStack>
+              <Avatar size="md" name={post?.username} />
+              <VStack align="stretch" spacing="0">
+                <Heading size="sm">{post?.username}</Heading>
+                <Text fontSize="xs" color="#808191">
+                  31m ago
+                </Text>
+              </VStack>
+            </HStack>
           </Link>
           {post?.username === currentUser ? (
             <Menu>
@@ -95,8 +94,8 @@ const PostItem = ({ post }) => {
                 icon={<MdOutlineMoreVert />}
                 variant="outline"
                 _focus={{ boxShadow: "none" }}
-                _hover={{bg: "none"}}
-                _active={{bg: "none"}}
+                _hover={{ bg: "none" }}
+                _active={{ bg: "none" }}
               />
               <MenuList bg="#21242D">
                 <MenuItem
@@ -106,11 +105,11 @@ const PostItem = ({ post }) => {
                 >
                   Edit Post
                 </MenuItem>
-                <EditPostModal isOpen={isOpen} onClose={onClose} post={post}/>
+                <EditPostModal isOpen={isOpen} onClose={onClose} post={post} />
                 <MenuItem
                   _hover={{ backgroundColor: "#242731", color: "white" }}
                   _focus={{ backgroundColor: "#242731", color: "white" }}
-                  onClick={()=>dispatch(deletePost(post))}
+                  onClick={() => dispatch(deletePost(post))}
                 >
                   Delete Post
                 </MenuItem>
@@ -128,7 +127,7 @@ const PostItem = ({ post }) => {
             <HStack color="#808191" align="center">
               <IconButton
                 fontSize="1.5rem"
-                icon={item.icon}
+                icon={item.active ? item.activeIcon : item.icon}
                 variant="unstyled"
                 color={item.active ? "#6C5DD3" : "#808191"}
                 onClick={item.clickHandler}
@@ -139,6 +138,12 @@ const PostItem = ({ post }) => {
               <Text>{item.stat}</Text>
             </HStack>
           ))}
+          <WhatsappShareButton
+            title={`Hi! Check this thought from ${userData.username}`}
+            url="https://google.com"
+          >
+            <WhatsappIcon size="1.8rem" borderRadius="1rem" />
+          </WhatsappShareButton>
         </HStack>
       </VStack>
     </Box>
