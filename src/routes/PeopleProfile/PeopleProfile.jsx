@@ -27,7 +27,7 @@ const PeopleProfile = () => {
             const {user} = await getUser(getUserId(username));
             setViewingUser(user);
         })()
-    },[])
+    },[username])
 
     return (
       <Box display="flex" gap="12" color="white">

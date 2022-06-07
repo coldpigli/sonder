@@ -3,5 +3,7 @@ export const fallbackData = {
     greetingSubHeaderFeed: "How are you feeling today?",
     greetingDescriptionFeed: "It takes courage to share how you feel, so be mindful about how you interact with others.",
     greetingSubHeaderPeers: "It's a good day to make new friends",
-    greetingDescriptionPeers: "You can revisit your existing peers here, or even better find new people to connect to. Voice your thoughts out in the wild, you'll definitely hear an echo back."
+    greetingDescriptionPeers: "You can revisit your existing peers here, or even better find new people to connect to. Voice your thoughts out in the wild, you'll definitely hear an echo back.",
+    greetingSubHeaderTrending: "Here are your trending post",
+    greetingDescriptionTrending: "Here are the posts that are gaining traction." 
 }

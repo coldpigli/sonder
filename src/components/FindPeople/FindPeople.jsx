@@ -32,6 +32,7 @@ const FindPeople = () => {
           .map((item) => {
             return (
               <Box>
+                <Link to={`/people/${item.username}`}>  
                 <VStack>
                   <Image
                     boxSize="80px"
@@ -42,7 +43,7 @@ const FindPeople = () => {
                   />
                   <Text fontSize="xs">{item.username}</Text>
                 </VStack>
-                <VStack></VStack>
+                </Link>
               </Box>
             );
           })}

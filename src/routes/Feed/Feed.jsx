@@ -1,8 +1,8 @@
-import {  Box, useMediaQuery, VStack } from "@chakra-ui/react";
+import {  Box, Button, useMediaQuery, VStack } from "@chakra-ui/react";
 import { AdditionalInfo, CreatePost, Feedlisting, GreetingHeader, Sidebar, TopBar} from "components";
 import BottomNav from "components/BottomNav/BottomNav";
 import { fallbackData, urls } from "constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "services";
 

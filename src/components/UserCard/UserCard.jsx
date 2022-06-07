@@ -19,9 +19,7 @@ const UserCard = ({currUserData}) => {
         handleFollowUnfollow({type:"unfollow", followUserId: _id},authToken,dispatch):
         handleFollowUnfollow({type:"follow", followUserId: _id},authToken,dispatch)
     }
-
-    console.log(checkIfAlreadyFollowed());
-
+    
   return (
     <Box p='0.5rem' bg='#242731' borderRadius='1rem'>
         <HStack justify='space-between'>
