@@ -22,6 +22,7 @@ import { checkIfBookmarked, checkUserPresence, getTimeDifference } from "utils";
 import { EditPostModal } from "components";
 import { WhatsappShareButton, WhatsappIcon } from "react-share";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const PostItem = ({ post }) => {
   const likeCount = post?.likes?.likeCount || 0;

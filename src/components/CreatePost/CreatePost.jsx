@@ -4,11 +4,8 @@ import {
   Flex,
   FormControl,
   HStack,
-  IconButton,
   Textarea,
 } from "@chakra-ui/react";
-import { MdOutlineEmojiEmotions } from "react-icons/md";
-import Picker from "emoji-picker-react";
 import { useFormik} from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
@@ -17,7 +14,6 @@ import { useDispatch } from "react-redux";
 import { addNewPost } from "services";
 
 const CreatePost = () => {
-  const [emojiPickerActive, setEmojiPickerActive] = useState(false);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {

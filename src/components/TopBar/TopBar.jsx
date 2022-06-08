@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "redux/slices/authSlice";
 import { SearchResultList } from "components";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { filterUsers } from "utils";
 
 const TopBar = () => {

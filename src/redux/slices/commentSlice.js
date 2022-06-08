@@ -31,7 +31,6 @@ const commentSlice = createSlice({
 
     [addNewCommentToPost.fulfilled]: (state, action) => {
       const { comments } = action.payload;
-      console.log("comments reeived", comments);
       state.comments = comments;
       state.commentStatus = "success";
     },

@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getUser } from "services";
 const PeopleProfile = () => {
-  const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
+  const [smallerDevice] = useMediaQuery("(max-width: 900px)");
   const { userList } = useSelector((state) => state.users);
   const { postList } = useSelector((state) => state.posts);
   const { username } = useParams();

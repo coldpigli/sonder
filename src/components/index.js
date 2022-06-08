@@ -12,7 +12,6 @@ import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 import FindPeople from "./FindPeople/FindPeople";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import Mockman from "./Mockman/Mockman";
-import TopNav from "./TopNav/TopNav";
 import EditPostModal from "./EditPostModal/EditPostModal";
 import CommentList from "./CommentList/CommentList";
 import CommentInput from "./CommentInput/CommentInput";
@@ -37,7 +36,6 @@ export{
     FindPeople,
     ProfileHeader,
     Mockman,
-    TopNav,
     EditPostModal,
     CommentList,
     CommentInput,

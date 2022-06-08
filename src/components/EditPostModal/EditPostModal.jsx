@@ -1,7 +1,6 @@
 import { Box, Button, FormControl, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea } from '@chakra-ui/react'
 import { validationMessages } from 'constants';
 import { useFormik } from 'formik';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editPost } from 'services';
 import * as Yup from "yup";

@@ -17,6 +17,7 @@ import {
   Avatar,
   Icon,
   AvatarBadge,
+  Text,
 } from "@chakra-ui/react";
 import { validationMessages } from "constants";
 import {BsFillCameraFill} from "react-icons/bs";
@@ -24,11 +25,13 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "services/userServices";
 import * as Yup from "yup";
+import { useState } from "react";
 
 const EditProfile = ({ isOpen, onClose, btnRef }) => {
   const { userData } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { firstName, lastName, profileImg, portfolioUrl, bio } = userData;
+  const [uploadingImage, setUploadingImage] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -50,8 +53,11 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
   });
 
   const uploadImage = async (image) => {
-    if (Math.round(image.size / 1024000) > 2)
+    setUploadingImage('Uploading Image');
+    if (Math.round(image.size / 1024000) > 2){
+      setUploadingImage('Image size cannot exceed 2mb');
 			console.log("Image cannot exceed 2mb");
+    }
 		else {
       const data = new FormData();
 			data.append("file", image);
@@ -67,9 +73,11 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
 				.then((response) => response.json())
 				.then((json) => {
           dispatch(editUser({profileImg: json.url}));
+          setUploadingImage('Upload Successful')
 				})
 				.catch((error) => {
 					console.error(error);
+          setUploadingImage('Upload Failed')
 				});
 		}
   }
@@ -100,7 +108,7 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
 												right="0px"
 												bottom="0"
 											>
-												<Icon as={BsFillCameraFill} w='10' h='10'/>
+												<Icon as={BsFillCameraFill} w='10' h='10' color='white'/>
 											</FormLabel>
 											<Input
 												type="file"
@@ -113,6 +121,8 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
                 </AvatarBadge>
               </Avatar>
               </FormControl>
+
+              {uploadingImage && <Text color='primary'>{uploadingImage}..</Text>}
 
               <FormControl
                 isInvalid={formik.errors.firstName && formik.touched.firstName}
@@ -170,7 +180,10 @@ const EditProfile = ({ isOpen, onClose, btnRef }) => {
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="blue" type="submit">
+            <Button colorScheme="blue" type="submit" onClick={()=>{
+              setUploadingImage('');
+              onClose();
+            }}>
               Save
             </Button>
           </DrawerFooter>

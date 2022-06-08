@@ -5,7 +5,6 @@ import { updateUserList } from "redux/slices/userSlice";
 export const handleFollowUnfollow = async (userMetaData, authToken, dispatch)=>{
     try{
         const {type, followUserId} = userMetaData;
-        console.log('type',type, followUserId);
         const res = await axios.post(`/api/users/${type}/${followUserId}`,{},{headers: {authorization: authToken}});
         const {user, followUser} = res.data;
         dispatch(updateUser(user));

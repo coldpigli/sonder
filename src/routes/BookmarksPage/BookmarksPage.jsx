@@ -1,5 +1,5 @@
-import { Box, Heading, HStack, Stack, Text, useMediaQuery, VStack } from '@chakra-ui/react'
-import { AdditionalInfo, Bookmarks, GreetingHeader, PostItem, Sidebar, TopBar } from 'components'
+import { Box, useMediaQuery, VStack } from '@chakra-ui/react'
+import { AdditionalInfo, Bookmarks, GreetingHeader, Sidebar, TopBar } from 'components'
 import BottomNav from 'components/BottomNav/BottomNav';
 import { urls } from 'constants';
 import { fallbackData } from 'constants';
