@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "redux/slices/authSlice";
 import { SearchResultList } from "components";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { filterUsers } from "utils";
 
 const TopBar = () => {
@@ -28,7 +28,7 @@ const TopBar = () => {
   const [smallerDevice] = useMediaQuery("(max-width: 900px)");
   const {userList} = useSelector((state)=>state.users);
   const [searchList, setSearchList] = useState([]);
-  const inputRef = useRef();
+  const [searchItem, setSearchItem] = useState();
   const menuStyle = { backgroundColor: "lightGrey", color: "white" };
 
   const handleLogout = () => {
@@ -38,8 +38,9 @@ const TopBar = () => {
     navigate("/login", { replace: true });
   };
 
-  const getSearchResults = () => {
-    setSearchList(filterUsers(userList, inputRef.current.value));
+  const getSearchResults = (e) => {
+    setSearchItem(e.target.value);
+    setSearchList(filterUsers(userList, searchItem));
   }
 
   return (
@@ -52,11 +53,11 @@ const TopBar = () => {
         {
           smallerDevice?null:<InputGroup>
           <InputLeftElement pointerEvents='none' children={<MdOutlineSearch color='gray.300' />}/>
-            <Input type="text" placeholder="Search Users" ref={inputRef} onChange={()=>getSearchResults()}/>
+            <Input type="text" placeholder="Search Users" onChange={(e)=>getSearchResults(e)}/>
           </InputGroup>
         }
         {
-          (inputRef?.current?.value?.length!==0) && <SearchResultList searchList={searchList}/>
+          searchItem?.length!==0 && <SearchResultList searchList={searchList}/>
         }
         </Box>
         <Box>

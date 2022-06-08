@@ -65,15 +65,6 @@ const CreatePost = () => {
             variant="ghost"
             fontSize="1.5rem"
             color="lightGrey"
-            icon={<MdImage />}
-            _focus={{
-              outline: "none",
-            }}
-          />
-          <IconButton
-            variant="ghost"
-            fontSize="1.5rem"
-            color="lightGrey"
             onClick={handleEmojiPicker}
             icon={<MdOutlineEmojiEmotions />}
             _focus={{
