@@ -2,7 +2,7 @@ export const urls = {
 
     heroVideo: "https://ik.imagekit.io/avavya/Sonder/blob_TLRHAPq_f.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1654684879386",
 
-    loginImage: 'https://ik.imagekit.io/avavya/Sonder/people_T-VbsWqQM.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1652766249210',
+    loginImage: 'https://ik.imagekit.io/avavya/Sonder/login-signup_qjVcW94Nf.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1654685977102',
 
     helloBoy: "https://ik.imagekit.io/avavya/Sonder/final-header-removebg-preview_lHs1-WAnE.png?ik-sdk-version=javascript-1.4.3&updatedAt=1653917762782",
 

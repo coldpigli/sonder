@@ -8,9 +8,9 @@ const Signup = () => {
     <div>
       <SimpleGrid columns={[1, null, 2]}>
         <GridItem>
-            <Center minH='100vh'>
+            <Center minH='100vh' color='white'>
               <VStack spacing='1rem' align="start">
-                <Heading as='h2' size='xl'>
+                <Heading as='h2' size='xl' color='primary'>
                    Signup
                 </Heading>
                 <Text>Signup to meet wierd, new people</Text>
@@ -24,7 +24,7 @@ const Signup = () => {
             </Center>
         </GridItem>
         <GridItem>
-            <Image src={urls.loginImage} alt='login-people' w='100%' h='100%' objectFit='cover' />
+            <Image src={urls.heroVideo} alt='login-people' w='100%' h='100%' objectFit='cover' />
         </GridItem>
       </SimpleGrid>
     </div>

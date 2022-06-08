@@ -1,9 +1,9 @@
-import { Button, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, VStack } from "@chakra-ui/react"
+import { Alert, AlertIcon, Button, FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, VStack } from "@chakra-ui/react"
 import { validationMessages } from "constants";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signupUser } from "services";
 import * as Yup from "yup";
 
@@ -11,7 +11,7 @@ const SignupForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {authToken} = useSelector((state)=>state.auth);
+    const {authToken, authStatus} = useSelector((state)=>state.auth);
 
     const formik = useFormik({
         initialValues: {
@@ -86,8 +86,11 @@ const SignupForm = () => {
         <FormHelperText>Must contain atleast 8 characters</FormHelperText>
         <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
       </FormControl>
-
-      <Button minW="100%" type="submit">
+      {authStatus==="failed"?<Alert status='error' bg='red.500' borderRadius='0.5rem'>
+        <AlertIcon color='white'/>
+        Fail to signup. Username Already exists
+      </Alert>:null}
+      <Button minW="100%" type="submit" bg='primary'>
         Signup
       </Button>
     </VStack>

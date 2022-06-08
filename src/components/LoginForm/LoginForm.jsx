@@ -21,6 +21,14 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {authToken, authStatus} = useSelector((state)=>state.auth);
+  const testCredentials = {
+    username: "coldpigli",
+    password: "Piyush@123"
+  }
+
+  const loginWithTest = () => {
+    dispatch(loginUser(testCredentials));
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -65,12 +73,15 @@ const LoginForm = () => {
         />
         <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
       </FormControl>
-      {authStatus==="failed"?<Alert status='error'>
-        <AlertIcon/>
+      {authStatus==="failed"?<Alert status='error' bg='red.500' borderRadius='0.5rem'>
+        <AlertIcon color='white'/>
         Username or Password is incorrect
       </Alert>:null}
-      <Button minW="100%" type="submit">
+      <Button minW="100%" type="submit" bg='primary'>
         Login
+      </Button>
+      <Button minW="100%" variant='outline' _hover={{bg:"none"}} onClick={loginWithTest}>
+        Login with Test Credentials
       </Button>
     </VStack>
   );
