@@ -1,5 +1,5 @@
 import { Box, Heading, HStack, Stack, Text } from "@chakra-ui/react";
-import { PostItem } from "components";
+import { EmptyCard, PostItem } from "components";
 import { useSelector } from "react-redux";
 
 const Bookmarks = () => {
@@ -22,9 +22,9 @@ const Bookmarks = () => {
         borderRadius="1rem"
         direction="column-reverse"
       >
-        {userData?.bookmarks?.map((id) => {
+        {(userData?.bookmarks?.length!==0) ? userData?.bookmarks?.map((id) => {
           return <PostItem post={getPostById(id)} />;
-        })}
+        }):<EmptyCard message="You have no thought bookmarked"/>}
       </Stack>
     </Box>
   );

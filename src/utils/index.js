@@ -1,7 +1,8 @@
-import { checkUserPresence, checkIfBookmarked, filterUsers } from "./helperFunctions";
+import { checkUserPresence, checkIfBookmarked, filterUsers, getTimeDifference } from "./helperFunctions";
 
 export {
     checkUserPresence, 
     checkIfBookmarked,
-    filterUsers
+    filterUsers,
+    getTimeDifference
 }

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Heading,
   HStack,
   IconButton,
@@ -34,6 +33,7 @@ const Feed = () => {
   const { greetingSubHeaderFeed, greetingDescriptionFeed } = fallbackData;
   const { postList } = useSelector((state) => state.posts);
   const [olderFirst, setOlderFirst] = useState(false);
+  console.log("post List", postList);
 
   useEffect(() => {
     dispatch(getAllUsers());

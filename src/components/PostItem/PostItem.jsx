@@ -18,7 +18,7 @@ import { AiOutlineFire, AiFillFire } from "react-icons/ai";
 import { MdOutlineBookmarkBorder, MdOutlineBookmark } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { bookmarkHandler, deletePost, likeOrDislikePost } from "services";
-import { checkIfBookmarked, checkUserPresence } from "utils";
+import { checkIfBookmarked, checkUserPresence, getTimeDifference } from "utils";
 import { EditPostModal } from "components";
 import { WhatsappShareButton, WhatsappIcon } from "react-share";
 import { Link, useNavigate } from "react-router-dom";
@@ -91,7 +91,7 @@ const PostItem = ({ post }) => {
               <VStack align="stretch" spacing="0">
                 <Heading size="sm">{post?.username}</Heading>
                 <Text fontSize="xs" color="#808191">
-                  31m ago
+                  {getTimeDifference(post.createdAt)}
                 </Text>
               </VStack>
             </HStack>
