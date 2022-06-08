@@ -50,7 +50,7 @@ const CreatePost = () => {
               borderRadius="1rem"
               placeholder="Pen your thoughts down"
               variant="unstyled"
-              bg="#242731"
+              bg="lightBlue"
               focusBorderColor="none"
               resize="none"
               border="none"
@@ -64,7 +64,7 @@ const CreatePost = () => {
           <IconButton
             variant="ghost"
             fontSize="1.5rem"
-            color="#808191"
+            color="lightGrey"
             icon={<MdImage />}
             _focus={{
               outline: "none",
@@ -73,7 +73,7 @@ const CreatePost = () => {
           <IconButton
             variant="ghost"
             fontSize="1.5rem"
-            color="#808191"
+            color="lightGrey"
             onClick={handleEmojiPicker}
             icon={<MdOutlineEmojiEmotions />}
             _focus={{
@@ -83,14 +83,14 @@ const CreatePost = () => {
           {emojiPickerActive && (
             <Picker
               pickerStyle={{
-                color: "#808191",
+                color: "lightGrey",
                 boxShadow: "none",
                 border: "none",
               }}
             />
           )}
         </Box>
-        <Button bg="#6C5DD3" type="submit">
+        <Button bg="primary" type="submit">
           Post
         </Button>
       </HStack>

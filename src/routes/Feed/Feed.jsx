@@ -1,16 +1,8 @@
-import { Box, Button, Heading, HStack, Stack, Text, useMediaQuery, VStack } from "@chakra-ui/react";
-import {
-  AdditionalInfo,
-  CreatePost,
-  Feedlisting,
-  GreetingHeader,
-  PostItem,
-  Sidebar,
-  TopBar,
-} from "components";
+import { Box, Heading, HStack, Stack, Text, useMediaQuery, VStack } from "@chakra-ui/react";
+import { AdditionalInfo, CreatePost, GreetingHeader, PostItem, Sidebar, TopBar} from "components";
 import BottomNav from "components/BottomNav/BottomNav";
 import { fallbackData, urls } from "constants";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts, getAllUsers } from "services";
 
@@ -31,19 +23,9 @@ const Feed = () => {
   return (
     <Box display="flex" gap="12" color="white">
       {smallerDevice ? <BottomNav /> : <Sidebar />}
-      <VStack
-        minH="100vh"
-        flex="2"
-        gap="4"
-        align="stretch"
-        p={`${smallerDevice ? "1rem" : "1rem 0"}`}
-      >
+      <VStack minH="100vh" flex="2" gap="4" align="stretch" p={`${smallerDevice ? "1rem 1rem 6rem 1rem" : "1rem 0"}`}>
         <TopBar />
-        <GreetingHeader
-          greetingSubHeader={greetingSubHeaderFeed}
-          greetingDescription={greetingDescriptionFeed}
-          greetingImg={urls.helloBoy}
-        />
+        <GreetingHeader greetingSubHeader={greetingSubHeaderFeed} greetingDescription={greetingDescriptionFeed} greetingImg={urls.helloBoy}/>
         <Box>
           <CreatePost />
         </Box>
@@ -53,14 +35,9 @@ const Feed = () => {
               <Heading size="md">Scroll</Heading>
               <Text fontSize="sm">Showing Recent</Text>
             </HStack>
-            <Stack
-              align="stretch"
-              spacing="6"
-              borderRadius="1rem"
-              direction="column-reverse"
-            >
+            <Stack align="stretch" spacing="6" borderRadius="1rem" direction="column-reverse" >
               {postList?.map((post) => {
-                return <PostItem post={post} />;
+                return <PostItem post={post} key={post._id}/>;
               })}
             </Stack>
           </Box>

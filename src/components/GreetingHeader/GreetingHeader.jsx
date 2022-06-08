@@ -10,13 +10,13 @@ const GreetingHeader = ({greetingSubHeader, greetingDescription, greetingImg}) =
       justify="space-between"
       borderRadius="1rem"
       p="1rem"
-      bg="rgb(36, 39, 49)"
+      bg="lightBlue"
       w="100%"
     >
       <VStack align="stretch">
         <Text fontSize="1.5rem">{`Hi ${userData.firstName},`}</Text>
         <Text>{greetingSubHeader}</Text>
-        <Text color="#808191">
+        <Text color="lightGrey">
           {greetingDescription}
         </Text>
       </VStack>
