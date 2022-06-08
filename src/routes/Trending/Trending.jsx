@@ -34,7 +34,7 @@ const Trending = () => {
         flex="2"
         gap="4"
         align="stretch"
-        p={`${smallerDevice ? "1rem" : "1rem 0"}`}
+        p={`${smallerDevice ? "1rem 1rem 6rem 1rem" : "1rem 0"}`}
       >
         <TopBar />
         <GreetingHeader
