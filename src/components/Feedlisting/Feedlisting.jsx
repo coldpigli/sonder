@@ -1,5 +1,5 @@
 import {Box, Heading, HStack,Stack,Text } from "@chakra-ui/react";
-import { PostItem } from "components";
+import { EmptyCard, PostItem } from "components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "services";
@@ -10,7 +10,6 @@ const Feedlisting = ({userOnly}) => {
   const dispatch = useDispatch();
   const usersPosts = postList.filter((post)=>post.username===userOnly);
   const displayPosts = (userOnly)?usersPosts:postList;
-  console.log({displayPosts});
 
   useEffect(()=>{
     if(postList.length===0)
@@ -27,8 +26,8 @@ const Feedlisting = ({userOnly}) => {
       </HStack>
       <Stack align="stretch" spacing="6" borderRadius='1rem' direction='column-reverse'>
         { 
-          displayPosts?.map((post)=>{
-          return <PostItem post={post}/>})
+         (displayPosts.length!==0)? displayPosts?.map((post)=>{
+          return <PostItem post={post}/>}):<EmptyCard/>
         }
       </Stack>
     </Box>

@@ -20,6 +20,7 @@ import Bookmarks from "./Bookmarks/Bookmarks";
 import EditProfile from "./EditProfile/EditProfile";
 import UserCard from "./UserCard/UserCard";
 import SearchResultList from "./SearchResultList/SearchResultList";
+import EmptyCard from "./EmptyCard/EmptyCard";
 
 export{
     TopBar,
@@ -43,5 +44,6 @@ export{
     Bookmarks,
     EditProfile,
     UserCard,
-    SearchResultList
+    SearchResultList,
+    EmptyCard
 }

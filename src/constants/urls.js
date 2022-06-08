@@ -12,6 +12,8 @@ export const urls = {
 
     trendingImg: "https://ik.imagekit.io/avavya/Sonder/trending-page_kFOvKNSP6.png?ik-sdk-version=javascript-1.4.3&updatedAt=1654612519244",
 
-    bookmarkImg: "https://ik.imagekit.io/avavya/Sonder/bookmark-illustration_uhHyWnW0P?ik-sdk-version=javascript-1.4.3&updatedAt=1654613423147"
+    bookmarkImg: "https://ik.imagekit.io/avavya/Sonder/bookmark-illustration_uhHyWnW0P?ik-sdk-version=javascript-1.4.3&updatedAt=1654613423147",
+
+    emptyImg: "https://ik.imagekit.io/avavya/Sonder/empty_3Z2m9OdxL.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1654710888314"
     
 }
