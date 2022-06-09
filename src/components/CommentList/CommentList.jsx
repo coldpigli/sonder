@@ -21,7 +21,7 @@ const CommentList = ({ postId }) => {
 
   useEffect(() => {
     dispatch(getCommentsOfPost(postId));
-  }, []);
+  }, [postId]);
 
   return (
     <VStack align="stretch" p="1rem" spacing="0" flexDirection="column-reverse">

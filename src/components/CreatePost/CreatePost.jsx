@@ -7,7 +7,6 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useFormik} from "formik";
-import { useState } from "react";
 import * as Yup from "yup";
 import { validationMessages } from "constants";
 import { useDispatch } from "react-redux";
