@@ -11,7 +11,6 @@ const UserCard = ({currUserData}) => {
     const dispatch = useDispatch();
 
     const checkIfAlreadyFollowed = () => {
-        console.log("following", userData?.following);
        return userData?.following.find((item)=>item.username===currUserData.username)
     }
 

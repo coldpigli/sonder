@@ -35,7 +35,7 @@ const CommentInput = ({postId}) => {
   return (
     <VStack p="1rem" align="stretch" spacing="4" as="form" onSubmit={formik.handleSubmit}>
       <HStack align='flex-start' spacing='4'>
-        <Avatar size="sm" name={userData.username} />
+        <Avatar size="sm" name={userData.username} src={userData.profileImg}/>
         <FormControl>
         <Textarea
           isInvalid={formik.errors.reply}

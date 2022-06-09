@@ -36,7 +36,6 @@ const postSlice = createSlice({
     },
     [getCurrentPost.fulfilled]: (state, action) => {
       const {post} = action.payload;
-      console.log("SLice tak aaya function");
       state.singlePost = post;
       state.postStatus = "success";
     },

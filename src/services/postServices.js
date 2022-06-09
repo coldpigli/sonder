@@ -14,7 +14,6 @@ async ()=>{
 const getCurrentPost = createAsyncThunk('posts/getSinglePost',
 async(postId, {rejectWithValue})=>{
     try{
-        console.log('the postId being sent is', postId);
         const res = await axios.get(`/api/posts/${postId}`);
         return res.data;
     }catch(err){

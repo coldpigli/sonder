@@ -16,7 +16,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/piyush_eating_q6saDRQSv.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654362769580",
     bio: "'Hooked' on react lately, flirting with Javascript simultaneously. Following NeoGcamp religiously. Loves dad jokes, music and quiet water bodies",
-    portfolioUrl: "",
+    portfolioUrl: "https://peerlist.io/piyushdas",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -74,7 +74,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/arushi_-ABxLV0-L.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451835556",
     bio: "User1",
-    portfolioUrl: "",
+    portfolioUrl: "www.arushisingh.com",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -100,7 +100,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/srejith_iIStFeFSX.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451731164",
     bio: "I am tall.",
-    portfolioUrl: "",
+    portfolioUrl: "https://github.com/srejitk",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -125,7 +125,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/vaibhav_MJosVDYLV.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451731681",
     bio: "Aaj TV series zyada dekh liya. Padhna padega",
-    portfolioUrl: "",
+    portfolioUrl: "https://github.com/vaibhav-mahalle/",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -143,7 +143,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/tahir_LHNoEQaM9.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451731406",
     bio: "I sleep on time.",
-    portfolioUrl: "",
+    portfolioUrl: "https://github.com/ttahm3d/",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -160,7 +160,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/rahulji_ZQ-WG_ndk.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451730679",
     bio: "Testing 123",
-    portfolioUrl: "",
+    portfolioUrl: "https://github.com/rahulcs754/",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -185,7 +185,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/nakul_Rs-XDbGCQ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1654451729877",
     bio: "I am pure and pious.",
-    portfolioUrl: "",
+    portfolioUrl: "www.bhratashree.com",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -211,7 +211,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/nisha_GH2syM9O7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451730228",
     bio: "Chupke chupke sab padh lungi.",
-    portfolioUrl: "",
+    portfolioUrl: "https://github.com/nishasen/",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -228,7 +228,7 @@ export const users = [
     profileImg:
       "https://ik.imagekit.io/avavya/Sonder/aaish_71M56QM80.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451729311",
     bio: "GO away! I have weddings to attend",
-    portfolioUrl: "",
+    portfolioUrl: "https://github.com/aishwarya-bm/",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),

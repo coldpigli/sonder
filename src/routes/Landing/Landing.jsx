@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import { Hero, TopBar, TopNav } from 'components'
+import { Hero} from 'components'
 
 const Landing = () => {
   return (
