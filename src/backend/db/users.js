@@ -22,7 +22,6 @@ export const users = [
     updatedAt: formatDate(),
     following: [
       { 
-        _id: uuid(),
         firstName: "Arushi",
         lastName: "Singh",
         username: "arushii97",
@@ -30,7 +29,6 @@ export const users = [
           "https://ik.imagekit.io/avavya/Sonder/arushi_-ABxLV0-L.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451835556",
       },
       { 
-        _id: uuid(),
         firstName: "Nakul",
         lastName: "Sharma",
         username: "bhratashree",
@@ -39,7 +37,6 @@ export const users = [
           "https://ik.imagekit.io/avavya/Sonder/nakul_Rs-XDbGCQ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1654451729877",
       },
       {
-        _id: uuid(),
         firstName: "Krituraj",
         lastName: "Jaiswal",
         username: "kritu",
@@ -50,7 +47,6 @@ export const users = [
       },
     ],
     followers: [{
-      _id: uuid(),
     firstName: "Sreejith",
     lastName: "K",
     username: "sreejithk",
@@ -59,7 +55,6 @@ export const users = [
       "https://ik.imagekit.io/avavya/Sonder/srejith_iIStFeFSX.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654451731164",
     },
     {
-      _id: uuid(),
       firstName: "Rahul",
       lastName: "Ji",
       username: "rahulji",
@@ -142,7 +137,7 @@ export const users = [
     _id: uuid(),
     firstName: "Tahir",
     lastName: "Ahmed",
-    username: "tahirahmed",
+    username: "ttahm3d",
     email: "tahir@gmail.com",
     password: "Tahir@123",
     profileImg:

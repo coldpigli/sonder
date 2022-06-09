@@ -1,12 +1,11 @@
-import { Hero, TopBar } from 'components'
-import React from 'react'
+import { Box } from '@chakra-ui/react'
+import { Hero, TopBar, TopNav } from 'components'
 
 const Landing = () => {
   return (
-    <div>
-        <TopBar />
+    <Box p='1rem' color='white'>
         <Hero />
-    </div>
+    </Box>
   )
 }
 

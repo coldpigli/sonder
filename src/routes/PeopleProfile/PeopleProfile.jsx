@@ -1,55 +1,83 @@
-import { Box, useMediaQuery, VStack } from '@chakra-ui/react';
-import { AdditionalInfo, ProfileHeader, Sidebar, TopBar } from 'components';
-import BottomNav from 'components/BottomNav/BottomNav';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getAllUsers, getUser } from 'services';
+import {
+  Box,
+  Heading,
+  HStack,
+  Stack,
+  Text,
+  useMediaQuery,
+  VStack,
+} from "@chakra-ui/react";
+import {
+  AdditionalInfo,
+  EmptyCard,
+  PostItem,
+  ProfileHeader,
+  Sidebar,
+  TopBar,
+} from "components";
+import BottomNav from "components/BottomNav/BottomNav";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getUser } from "services";
 const PeopleProfile = () => {
+  const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
+  const { userList } = useSelector((state) => state.users);
+  const { postList } = useSelector((state) => state.posts);
+  const { username } = useParams();
+  const [viewingUser, setViewingUser] = useState();
+  const getUserId = (username) => {
+    const user = userList?.find((user) => user.username === username);
+    return user._id;
+  };
 
-    const [smallerDevice] = useMediaQuery("(max-width: 900px)"); // checking if the device is less than 900px
-    const {userData} = useSelector((state)=>state.auth);
-    const {userList} = useSelector((state)=>state.users);
-    const {username} = useParams();
-    console.log("user list", userList);
-    console.log("username", username)
-    const [viewingUser, setViewingUser] = useState();
-    console.log("viewing user", viewingUser);
-    const dispatch = useDispatch();
+  const getUsersPosts = (username) => {
+    return postList?.filter((item) => item.username === username);
+  };
 
-    const getUserId = (username) => {
-        const user = userList?.find((user)=>user.username===username);
-        return user._id;
-    }
+  useEffect(() => {
+    (async () => {
+      const { user } = await getUser(getUserId(username));
+      setViewingUser(user);
+    })();
+  }, [username, userList]);
 
-    useEffect(()=>{
-        (async()=>{
-            const {user} = await getUser(getUserId(username));
-            setViewingUser(user);
-        })()
-    },[username])
-
-    return (
-      <Box display="flex" gap="12" color="white">
-        {smallerDevice ? <BottomNav /> : <Sidebar />}
-        <VStack
-          minH="100vh"
-          flex="2"
-          gap="4"
-          align="stretch"
-          p={`${smallerDevice ? "1rem" : "1rem 0"}`}
-        >
-          <TopBar />
-          {
-             viewingUser && <ProfileHeader user={viewingUser}/>
-          }
-          <Box>
-            User Data
+  return (
+    <Box display="flex" gap="12" color="white">
+      {smallerDevice ? <BottomNav /> : <Sidebar />}
+      <VStack
+        minH="100vh"
+        flex="2"
+        gap="4"
+        align="stretch"
+        p={`${smallerDevice ? "1rem 1rem 6rem 1rem" : "1rem 0"}`}
+      >
+        <TopBar />
+        {viewingUser && <ProfileHeader user={viewingUser} />}
+        <Box>
+          <Box mt="1rem">
+            <HStack justify="space-between" mb="1rem">
+              <Heading size="md">Scroll</Heading>
+              <Text fontSize="sm">Showing {username}'s thoughts</Text>
+            </HStack>
+            <Stack
+              align="stretch"
+              spacing="6"
+              borderRadius="1rem"
+              direction="column-reverse"
+            >
+              {getUsersPosts(username).length !== 0 ? (
+                getUsersPosts(username)?.map((post) => <PostItem post={post} />)
+              ) : (
+                <EmptyCard message={`${username} has not shared any thoughts yet`}/>
+              )}
+            </Stack>
           </Box>
-        </VStack>
-        {!smallerDevice && <AdditionalInfo />}
-      </Box>
-    );
-}
+        </Box>
+      </VStack>
+      {!smallerDevice && <AdditionalInfo />}
+    </Box>
+  );
+};
 
-export default PeopleProfile
+export default PeopleProfile;

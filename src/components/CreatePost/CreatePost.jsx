@@ -7,7 +7,7 @@ import {
   IconButton,
   Textarea,
 } from "@chakra-ui/react";
-import { MdImage, MdOutlineEmojiEmotions } from "react-icons/md";
+import { MdOutlineEmojiEmotions } from "react-icons/md";
 import Picker from "emoji-picker-react";
 import { useFormik} from "formik";
 import { useState } from "react";
@@ -33,10 +33,6 @@ const CreatePost = () => {
     },
   });
 
-  const handleEmojiPicker = () => {
-    setEmojiPickerActive((prev) => !prev);
-  };
-
   return (
     <Box borderRadius="1rem" as="form" onSubmit={formik.handleSubmit}>
       <Flex align="center" w="full">
@@ -50,7 +46,7 @@ const CreatePost = () => {
               borderRadius="1rem"
               placeholder="Pen your thoughts down"
               variant="unstyled"
-              bg="#242731"
+              bg="lightBlue"
               focusBorderColor="none"
               resize="none"
               border="none"
@@ -61,36 +57,8 @@ const CreatePost = () => {
       </Flex>
       <HStack mt="1rem" justify="space-between">
         <Box>
-          <IconButton
-            variant="ghost"
-            fontSize="1.5rem"
-            color="#808191"
-            icon={<MdImage />}
-            _focus={{
-              outline: "none",
-            }}
-          />
-          <IconButton
-            variant="ghost"
-            fontSize="1.5rem"
-            color="#808191"
-            onClick={handleEmojiPicker}
-            icon={<MdOutlineEmojiEmotions />}
-            _focus={{
-              outline: "none",
-            }}
-          />
-          {emojiPickerActive && (
-            <Picker
-              pickerStyle={{
-                color: "#808191",
-                boxShadow: "none",
-                border: "none",
-              }}
-            />
-          )}
         </Box>
-        <Button bg="#6C5DD3" type="submit">
+        <Button bg="primary" type="submit">
           Post
         </Button>
       </HStack>

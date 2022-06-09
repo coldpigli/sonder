@@ -8,14 +8,14 @@ const Login = () => {
     <div>
       <SimpleGrid columns={[1, null, 2]}>
         <GridItem>
-            <Center minH='100vh'>
+            <Center minH='100vh' color='white'>
               <VStack spacing='1rem' align="start">
-                <Heading as='h2' size='xl'>
+                <Heading as='h2' size='xl' color='primary'>
                    Login
                 </Heading>
                 <Text>Login to meet wierd, new people</Text>
                 <LoginForm/>
-                <Box>
+                <Box color='white'>
                   <Text>Haven't sworn allegiance to us yet?  
                     <Link to="/signup"><Text as='u'> Signup Now</Text></Link>
                   </Text>
@@ -24,7 +24,7 @@ const Login = () => {
             </Center>
         </GridItem>
         <GridItem>
-            <Image src={urls.loginImage} alt='login-people' w='100%' h='100%' objectFit='cover' />
+            <Image src={urls.heroVideo} alt='login-people' w='100%' h='100%' objectFit='cover' />
         </GridItem>
       </SimpleGrid>
     </div>

@@ -5,7 +5,9 @@ import {
 export const customTheme = extendTheme(
     {
       colors: {
-        primary: '#1c7d5e',
+        primary: '#6C5DD3',
+        lightGrey: '#808191',
+        lightBlue: '#242731'
       },
       fonts: {
         body: 'Poppins, sans-serif',

@@ -1,4 +1,4 @@
-import {Box, Button, Center, Flex, Heading, VStack } from "@chakra-ui/react";
+import {Box, Button, Center, Flex, Heading, Image, VStack } from "@chakra-ui/react";
 import { urls } from "constants/urls";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { useNavigate } from "react-router-dom";
@@ -24,14 +24,12 @@ const Hero = () => {
         </Box>
       </VStack>
       <Center w={{base: "100%", md: "100%", xl: "50%", }}>
-        <video width="90%" height="30%" autoPlay={true} muted={true} loop={true}>
-          <source src={urls.heroVideo} type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+        <Image src={urls.heroVideo}/>
       </Center>
     </Flex>
   );
 };
 
 export default Hero;
+
+
