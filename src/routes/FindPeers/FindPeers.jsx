@@ -98,7 +98,7 @@ const FindPeers = () => {
                       })}
                     </SimpleGrid>
                   ) : (
-                    <EmptyCard message="You are not following anyone" />
+                    <EmptyCard message={tabData.emptyMsg} />
                   )}
                 </TabPanel>
               );
