@@ -34,7 +34,7 @@ const PostItem = ({ post }) => {
   const navigate = useNavigate();
 
   const findProfileImg = (name) => {
-    const user = userList.find((item) => item.username === name);
+    const user = userList?.find((item) => item.username === name);
     return user?.profileImg;
   };
 
@@ -66,9 +66,9 @@ const PostItem = ({ post }) => {
       icon: <MdOutlineBookmarkBorder />,
       activeIcon: <MdOutlineBookmark />,
       name: "Bookmark",
-      active: checkIfBookmarked(userData.bookmarks, post),
+      active: checkIfBookmarked(userData?.bookmarks, post),
       clickHandler: () => {
-        checkIfBookmarked(userData.bookmarks, post)
+        checkIfBookmarked(userData?.bookmarks, post)
           ? dispatch(
               bookmarkHandler({ type: "remove-bookmark", _id: post?._id })
             )
@@ -91,7 +91,7 @@ const PostItem = ({ post }) => {
               <VStack align="stretch" spacing="0">
                 <Heading size="sm">{post?.username}</Heading>
                 <Text fontSize="xs" color="#808191">
-                  {getTimeDifference(post.createdAt)}
+                  {getTimeDifference(post?.createdAt)}
                 </Text>
               </VStack>
             </HStack>
@@ -149,7 +149,7 @@ const PostItem = ({ post }) => {
             </HStack>
           ))}
           <WhatsappShareButton
-            title={`Hi! Check this thought from ${userData.username}`}
+            title={`Hi! Check this thought from ${userData?.username}`}
             url="https://google.com"
           >
             <WhatsappIcon size="1.8rem" borderRadius="1rem" />
